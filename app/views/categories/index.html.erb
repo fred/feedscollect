@@ -1,0 +1,18 @@
+<table id="hor-minimalist-b">
+  
+  <tr>
+    <th>Title</th>
+    <th>Desc</th>
+    <th>Sites</th>
+  </tr>
+
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= link_to category.title.to_s, category %></td>
+      <td><%= category.description %></td>
+      <td><%= category.feed_sites.count %></td>
+    </tr>
+  <% end %>
+
+</table>
+

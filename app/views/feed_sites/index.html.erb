@@ -1,0 +1,25 @@
+<table id="hor-minimalist-b">
+  <tr>
+    <th>Title</th>
+    <th>Desc</th>
+    <th>URL</th>
+    <th>Category</th>
+    <th>Last Modified</th>
+    <th>ETAG</th>
+    <th>Entries</th>
+  </tr>
+  <% for feed_site in @feed_sites %>
+    <tr>
+      <td><%= link_to h(feed_site.title), feed_site %></td>
+      <td><%= link_to h(feed_site.description), feed_site %></td>
+      <td><%=h feed_site.url %></td>
+      <td><%= link_to_if(feed_site.category_name, feed_site.category_name, feed_site.category) %></td>
+      <td><%=h feed_site.last_modified.to_s %></td>
+      <td><%=h feed_site.etag %></td>
+      <td><%=h feed_site.feed_entries.count %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+<p><%= link_to "New Feed Site", new_feed_site_path %></p>

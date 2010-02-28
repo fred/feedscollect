@@ -1,0 +1,18 @@
+<br />
+<% i = 1 %>
+<% for feed_site in @feed_sites %>
+  <% i+=1 %>
+  <div class="box">
+    <div class="box_title">
+      <p><%= link_to feed_site.title, feed_site %></p>
+    </div>
+    <div class="box_content">
+      <% feed_site.feed_entries.per_box.each do |t| %>
+         - <%= link_to(h(t.title.to_s), h(t.url)) %><br />
+      <% end %>
+    </div>
+  </div>
+  <% if i%3==1 %>
+    <br /clear="both">
+  <% end %>
+<% end %>

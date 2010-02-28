@@ -1,0 +1,7 @@
+<% form_for(@category, :url => { :action => "update" }) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+<p>
+  <%= link_to 'Show', admin_category_path(@category) %> |
+  <%= link_to 'View All', admin_categories_path %>
+</p>

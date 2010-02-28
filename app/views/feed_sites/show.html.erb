@@ -1,0 +1,14 @@
+<p>
+  <strong>URL:</strong>
+  <%= link_to h(@feed_site.url), h(@feed_site.url) %>
+  &nbsp;
+  <strong>Category:</strong>
+  <%=h @feed_site.category_name %>
+  &nbsp;
+  <strong>Last Modified:</strong>
+  <%=h @feed_site.last_modified %>
+</p>
+
+<% @feed_site.feed_entries.each do |t| %>
+  <p><%= link_to t.title, t.url %></p>
+<% end %>
