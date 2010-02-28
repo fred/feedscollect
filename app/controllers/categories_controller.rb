@@ -36,6 +36,11 @@ class CategoriesController < ApplicationController
     end
     params[:id] = @category.id
     @feed_sites = @category.feed_sites(:include => :feed_entries)
+    if @category.description.to_s.blank?
+      @title = @category.title
+    else
+      @title = @category.description
+    end
     render :action => "show"
   end
 
