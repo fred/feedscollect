@@ -17,7 +17,10 @@ class FeedSite < ActiveRecord::Base
     self.category.title if self.category
   end
   
-  def should_update
+  def force_refresh
+    self.etag = nil
+    self.last_modified  = nil
+    self.save
   end
   
   def self.refresh

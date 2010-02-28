@@ -1,7 +1,7 @@
 set :application, "technews-homepage.com"
 set :repository,  "git@github.com:fred/feedscollect.git"
 set :branch, "master"
-set :domain, "technews-homepage.com"
+set :domain, "10.8.0.1"
 set :scm, :git
 set :deploy_via, :remote_cache
 set :rails_env, "production"

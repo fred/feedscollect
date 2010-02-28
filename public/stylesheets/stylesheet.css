@@ -36,7 +36,7 @@ blockquote
 /* Wrapper & Container */
 #wrapper
 {
-	width:98%;
+	width:99%;
 	margin:0 auto;
 }
 
@@ -93,8 +93,8 @@ blockquote
 	width:100%;
 	border:1px solid #ccc;
 	float:left;
-	padding-bottom:5px;
-	margin-bottom:5px;
+	padding-bottom:6px;
+	margin-bottom:6px;
 }
 
 #page-info {
