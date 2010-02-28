@@ -27,5 +27,16 @@ class CategoriesController < ApplicationController
       format.xml  { render :xml => @category }
     end
   end
+  
+  
+  def home
+    @category = Category.default_category
+    if @category.nil?
+      @category = Category.find(:first)
+    end
+    params[:id] = @category.id
+    @feed_sites = @category.feed_sites(:include => :feed_entries)
+    render :action => "show"
+  end
 
 end

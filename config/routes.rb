@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.root :controller => :categories
+  map.root :controller => "categories", :action => "home"
   
   map.resources :feed_types
 
@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :feed_entries, :belongs_to => :feed_site
 
-  map.resources :categories, :has_many => :feed_sites
+  map.resources :categories, :has_many => :feed_sites, :collection => {:home => [:any]}
 
   map.resources :users
   map.resource :user_session

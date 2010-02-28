@@ -74,3 +74,12 @@ end
 after "deploy:symlink", "customs:config"
 after "deploy:symlink", "customs:symlink"
 after "deploy", "deploy:cleanup"
+
+namespace :deploy do
+  task :first_setup do
+    run "mkdir -p #{shared_path}/config"
+    run "touch #{shared_path}/config/database.yml"
+    run "touch #{shared_path}/config/thin.yml"
+  end
+end
+
