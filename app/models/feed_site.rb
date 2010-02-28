@@ -20,11 +20,21 @@ class FeedSite < ActiveRecord::Base
   def should_update
   end
   
+  def self.refresh
+    FeedSite.all.each do |t|
+      logger.info "Refreshing feed: #{t.url}..."
+      if t.save
+        logger.info "...success for feed: #{t.url}"
+      end
+    end
+  end
+  
   def save_details
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
     return unless feed
     self.title = feed.title.to_s if self.title.to_s.blank?
     self.description = feed.class.to_s if self.description.to_s.blank?
+    self.site_url = feed.url.to_s
     if (feed.etag && (feed.etag.to_s != self.etag)) or (feed.last_modified.to_i > self.last_modified.to_i) 
       feed.entries.each do |t| 
         if t.last_modified.to_i > self.last_modified.to_i

@@ -12,6 +12,19 @@
   <%= f.text_field :url %>
 </p>
 <p>
+  <%= f.label :site_url %><br />
+  <%= f.text_field :site_url %>
+</p>
+<p>
+  <%= f.label :logo_url %><br />
+  <%= f.text_field :logo_url %>
+</p>
+<p>
+  <%= f.label :sort_order %><br />
+  <%= f.text_field :sort_order, :size => 4 %>
+</p>
+
+<p>
   <%= f.label :category %><br />
   <%= f.select :category_id, Category.all.collect {|t| [t.title,t.id] }, { :include_blank => true } %>
 </p>

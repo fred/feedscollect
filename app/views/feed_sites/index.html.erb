@@ -12,7 +12,7 @@
     <tr>
       <td><%= link_to h(feed_site.title), feed_site %></td>
       <td><%= link_to h(feed_site.description), feed_site %></td>
-      <td><%=h feed_site.url %></td>
+      <td><%= link_to h(feed_site.url), "url" %></td>
       <td><%= link_to_if(feed_site.category_name, feed_site.category_name, feed_site.category) %></td>
       <td><%=h feed_site.last_modified.to_s %></td>
       <td><%=h feed_site.etag %></td>

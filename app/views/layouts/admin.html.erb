@@ -18,7 +18,7 @@
   			<ul>
   			  <li><%= link_to "Categories:", admin_categories_url %></li>
   			  <% Category.all.each do |t| %>
-  			    <li><%= link_to t.title, admin_category_path(t) %></li>
+  			    <li class="<%=highlight(t.id)%>"><%= link_to t.title, admin_category_feed_sites_path(t) %></li>
   			  <% end %>
   			</ul>
   		</div>

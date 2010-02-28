@@ -10,4 +10,12 @@ class FeedSitesController < ApplicationController
     @title = @feed_site.title
   end
   
+  def refresh_xluriwaplezx
+    spawn do
+      FeedSite.refresh
+    end
+    flash[:notice] = "Refreshing all feeds now..."
+    redirect_to :action => "index"
+  end
+  
 end

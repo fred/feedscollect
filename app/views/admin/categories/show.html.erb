@@ -1,13 +1,6 @@
-<h3><%= @category.title %></h3>
-<p><%= @category.description %></p>
+<p>Title: <%= @category.title %></p>
+<p>Description: <%= @category.description %></p>
 <p>
   <%= link_to 'Edit', edit_admin_category_path(@category) %> |
   <%= link_to 'Back', admin_categories_path %>
 </p>
-<br />
-<% for feed_site in @category.feed_sites %>
-  <p>
-    <%= link_to feed_site.title, admin_feed_site_path(feed_site) %>
-    (<%= feed_site.feed_entries.count %>)
-  </p>
-<% end %>

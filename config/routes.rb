@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :feed_types
 
-  map.resources :feed_sites, :has_many => :feed_entries, :belongs_to => :category
+  map.resources :feed_sites, :has_many => :feed_entries, :belongs_to => :category, :collection => {:refresh_xluriwaplezx => [:any]}
 
   map.resources :feed_entries, :belongs_to => :feed_site
 
@@ -21,9 +21,9 @@ ActionController::Routing::Routes.draw do |map|
   # Admin
   map.namespace :admin do |admin|
     admin.resources :feed_types
-    admin.resources :feed_sites
-    admin.resources :feed_entries
-    admin.resources :categories
+    admin.resources :feed_sites, :has_many => :feed_entries, :belongs_to => :category
+    admin.resources :feed_entries, :belongs_to => :feed_site
+    admin.resources :categories, :has_many => :feed_sites
     admin.resources :users
     admin.resources :settings
   end

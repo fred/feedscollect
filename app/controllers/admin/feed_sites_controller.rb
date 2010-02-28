@@ -1,7 +1,14 @@
 class Admin::FeedSitesController < Admin::BaseController
   
   def index
-    @feed_sites = FeedSite.all(:order => "category_id ASC, title ASC")
+    
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @feed_sites = @category.feed_sites
+    else
+      @feed_sites = FeedSite.all(:order => "category_id ASC, title ASC")
+    end
+    
     @title = "Feed Sites list"
   end
   

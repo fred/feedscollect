@@ -4,7 +4,7 @@
   <% i+=1 %>
   <div class="box">
     <div class="box_title">
-      <p><%= link_to feed_site.title, feed_site %></p>
+      <p><%= link_to feed_site.title, h(feed_site.site_url.to_s) %></p>
     </div>
     <div class="box_content">
       <% feed_site.feed_entries.per_box.each do |t| %>

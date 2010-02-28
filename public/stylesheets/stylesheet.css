@@ -286,21 +286,18 @@ a:hover
 }
 
 /* Images */
-.alignleft
-{
+.alignleft {
 	float:left;
 	margin:0 20px 10px 0;
 }
 
-.alignright
-{
+.alignright {
 	float:right;
 	margin:0 0 10px 20px;
 }
 
 /* Positioning */
-.clear
-{
+.clear {
 	clear:both;
 }
 
@@ -320,7 +317,7 @@ li.highlight a {
   text-align:left;
   width: 32%;
   float: left;
-  min-height: 280px;
+  min-height: 290px;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 2%;
