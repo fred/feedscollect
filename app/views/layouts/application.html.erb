@@ -66,6 +66,8 @@
 
   	</div><!-- End wrapper -->
   	
-  	
+  	<% if RAILS_ENV == "production" %>
+  	  <%= render :partial => "/shared/ga" %>
+  	<% end %>
   </body>
 </html>
