@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.xml
   def show
     @category = Category.find(params[:id])
-    @feed_sites = @category.feed_sites(:include => :feed_entries)
+    @feed_sites = @category.feed_sites
 
     if @category.description.to_s.blank?
       @title = @category.title
