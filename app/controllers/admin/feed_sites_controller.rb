@@ -6,7 +6,7 @@ class Admin::FeedSitesController < Admin::BaseController
       @category = Category.find(params[:category_id])
       @feed_sites = @category.feed_sites
     else
-      @feed_sites = FeedSite.all(:order => "category_id ASC, title ASC")
+      @feed_sites = FeedSite.all(:order => "sort_order ASC, title ASC")
     end
     
     @title = "Feed Sites list"

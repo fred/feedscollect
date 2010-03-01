@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100228151707) do
+ActiveRecord::Schema.define(:version => 20100301064726) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20100228151707) do
     t.datetime "updated_at"
     t.string   "site_url"
     t.string   "logo_url"
-    t.string   "sort_order"
+    t.integer  "sort_order",    :default => 200
   end
 
   create_table "users", :force => true do |t|
