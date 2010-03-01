@@ -33,6 +33,12 @@
   <%=h @feed_site.feed_entries.count %>
 </p>
 
+<p>
+  <%= image_tag @feed_site.avatar.url(:small) %>
+  <%= image_tag @feed_site.avatar.url(:medium) %>
+  <%= image_tag @feed_site.avatar.url(:large) %>
+  <%= image_tag @feed_site.avatar.url(:original) %>
+</p>
 
 <table id="hor-minimalist-b">
   <tr>

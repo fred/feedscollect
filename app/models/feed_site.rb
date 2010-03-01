@@ -1,10 +1,14 @@
 class FeedSite < ActiveRecord::Base
   
+  attr_writer :skip_refresh
+  
+  has_attached_file :avatar, :styles => { :large => "200x30>", :medium => "180x28>", :small => "160x26>" }
+  
   belongs_to :category
   has_many :feed_entries, :order => "published DESC, id DESC", :dependent => :destroy
   
   # Change to after_create later
-  before_save   :save_details
+  before_save :save_details
   
   FEED_TYPES = [ 
     {:id => 1, :name => "atom"}, 
@@ -13,6 +17,10 @@ class FeedSite < ActiveRecord::Base
     {:id => 4, :name => "itunes_rss"}
   ]
   
+  def skip_refresh
+    @skip_refresh || nil
+  end
+  
   def category_name
     self.category.title if self.category
   end
@@ -20,6 +28,7 @@ class FeedSite < ActiveRecord::Base
   def force_refresh
     self.etag = nil
     self.last_modified  = nil
+    self.feed_entries.destroy_all
     self.save
   end
   
@@ -33,6 +42,7 @@ class FeedSite < ActiveRecord::Base
   end
   
   def save_details
+    
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
     return unless feed
     self.title = feed.title.to_s if self.title.to_s.blank?

@@ -1,31 +1,61 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :title %><br />
-  <%= f.text_field :title %>
-</p>
-<p>
-  <%= f.label :description %><br />
-  <%= f.text_field :description %>
-</p>
-<p>
-  <%= f.label :url, "RSS URL" %><br />
-  <%= f.text_field :url %>
-</p>
-<p>
-  <%= f.label :site_url, "Site URL" %><br />
-  <%= f.text_field :site_url %>
-</p>
-<p>
-  <%= f.label :logo_url %><br />
-  <%= f.text_field :logo_url %>
-</p>
-<p>
-  <%= f.label :sort_order %><br />
-  <%= f.text_field :sort_order, :size => 4 %>
-</p>
+<table>
+  <tr>
+    <td><%= f.label :title %></td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  
+  <tr>
+    <td><%= f.label :description %></td>
+    <td><%= f.text_field :description %></td>
+  </tr>
 
-<p>
-  <%= f.label :category %><br />
-  <%= f.select :category_id, Category.all.collect {|t| [t.title,t.id] }, { :include_blank => true } %>
-</p>
-<p><%= f.submit "Submit" %></p>
+  <tr>
+    <td><%= f.label :site_url, "Site URL" %></td>
+    <td><%= f.text_field :site_url %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.label :logo_url %></td>
+    <td><%= f.text_field :logo_url %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.label :sort_order %></td>
+    <td><%= f.text_field :sort_order, :size => 4 %></td>
+  </tr>
+
+  <tr>
+    <td><strong><%= f.label :url, "RSS URL" %></strong></td>
+    <td><%= f.text_field :url %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.label :avatar %></td>
+    <td><%= f.file_field :avatar %></td>
+  </tr>
+  
+  <tr>
+    <td><%= f.label :category %></td>
+    <td><%= f.select :category_id, Category.all.collect {|t| [t.title,t.id] }, { :include_blank => true } %></td>
+  </tr>
+  
+  <tr>
+    <td><%= f.label :skip_refresh %></td>
+    <td><%= f.check_box :skip_refresh %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.submit "Submit" %></td>
+  </tr>
+
+<table>
+
+<% if @feed_site.avatar? %>
+  <p>
+    <%= image_tag @feed_site.avatar.url(:small) %><br />
+    <%= image_tag @feed_site.avatar.url(:medium) %><br />
+    <%= image_tag @feed_site.avatar.url(:large) %><br />
+    <%= image_tag @feed_site.avatar.url(:original) %><br />
+  </p>
+<% end %>

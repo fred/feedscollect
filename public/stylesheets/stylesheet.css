@@ -337,7 +337,12 @@ li.highlight a {
 }
 .box_title {
   text-align:left;
+  margin: 0;
 }
+.box_title p {
+  margin: 3px 3px 3px 8px;
+}
+
 .box_content {
   font-size: 1em;
   padding: 0px 6px 3px 3px;
@@ -370,4 +375,8 @@ li.highlight a {
 	text-overflow: ellipsis;
 	margin: 0;
 	padding: 0;
+}
+
+table {
+  text-align: left;
 }
