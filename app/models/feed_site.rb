@@ -45,7 +45,7 @@ class FeedSite < ActiveRecord::Base
           fi.title = t.title
           fi.url = t.url
           fi.author = t.author
-          #fi.summary = t.summary
+          fi.summary = t.summary
           #fi.content = t.content
           fi.published = t.published
           fi.save

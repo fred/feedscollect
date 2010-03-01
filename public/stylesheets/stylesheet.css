@@ -317,9 +317,9 @@ li.highlight a {
   text-align:left;
   width: 32%;
   float: left;
-  min-height: 290px;
+  min-height: 240px;
   height: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   border-radius: 2%;
   -moz-border-radius: 2%;
   -webkit-border-radius: 6px; /* all corners */
@@ -333,27 +333,41 @@ li.highlight a {
   margin: 0.5%;
   display: inline;
   clear: none;
+  background-color: #fff;
 }
 .box_title {
   text-align:left;
 }
 .box_content {
-  font-size: 0.95em;
-  padding: 2px;
+  font-size: 1em;
+  padding: 0px 6px 3px 3px;
   letter-spacing:0px;
   margin: 0;
+  line-height: 1.4em;
 }
 .box_content a {
   padding: 0;
-  margin: 0 0 2px 0;
+  margin: 0;
   text-align:left;
-  color: #555;
+  color: #444;
 }
 .box_content a:visited {
   text-align:left;
-  color: #777;
+  color: #888;
 }
 .box_content a:hover {
   color: #f25f0f;
   border:none;
+}
+
+.box_content p {
+  font-weight: normal;
+  font-size: 1em;
+  letter-spacing: 0px;
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0;
+	padding: 0;
 }
