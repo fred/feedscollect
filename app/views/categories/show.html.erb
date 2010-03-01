@@ -6,12 +6,11 @@
     <div class="box_title">
       <p>
         <% if feed_site.avatar? %>
-          <%= link_to(image_tag(feed_site.avatar.url(:small)), h(feed_site.site_url.to_s), :title => h(feed_site.title)) %>
+          <%= link_to(image_tag(feed_site.avatar.url(:large)), h(feed_site.site_url.to_s), :title => h(feed_site.title)) %>
         <% else %>
           <%= link_to(h(feed_site.title), h(feed_site.site_url.to_s), :title => h(feed_site.title))%>
         <% end %>
       </p>
-      
     </div>
     <div class="box_content">
       <% feed_site.feed_entries.per_box.each do |t| %>
