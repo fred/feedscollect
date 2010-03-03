@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_iphone_format
 
   def is_iphone_request?
-    request.user_agent =~ /(Mobile\/.+Safari)|(Blackberry)|(Symbian)|(Nokia)/
+    request.user_agent.downcase =~ /(mobile\/.+safari)|(iphone)|(blackberry)|(symbian)|(nokia)|(android)|(smartphone)|(wap)/
   end
 
   def set_iphone_format
-    if is_iphone_request?
+    if is_iphone_request? or params[:mobile]
       request.format = :iphone
     end
   end
