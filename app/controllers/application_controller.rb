@@ -10,8 +10,20 @@ class ApplicationController < ActionController::Base
   
   before_filter :store_location
   
+  before_filter :set_iphone_format
+
+  def is_iphone_request?
+    request.user_agent =~ /(Mobile\/.+Safari)|(Blackberry)|(Symbian)|(Nokia)/
+  end
+
+  def set_iphone_format
+    if is_iphone_request?
+      request.format = :iphone
+    end
+  end
+  
   def initialize
-    @start_time = Time.now.usec
+    #@start_time = Time.now.usec
   end
   
   def logged_in?
@@ -50,7 +62,7 @@ class ApplicationController < ActionController::Base
       if current_user
         store_location
         flash[:notice] = "You must be logged out to access this page"
-        redirect_to account_url
+        redirect_to root_path
         return false
       end
     end

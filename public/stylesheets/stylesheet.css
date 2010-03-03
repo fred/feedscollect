@@ -320,16 +320,12 @@ li.highlight a {
   min-height: 214px;
   height: auto;
   border: 1px solid #bbb;
-  border-radius: 2%;
-  -moz-border-radius: 2%;
-  -webkit-border-radius: 6px; /* all corners */
-	-webkit-border-top-left-radius:10px; /* top left corner */
-	-webkit-border-top-right-radius:10px; /* top right corner */
-	-webkit-border-bottom-left-radius:10px; /* bottom left corner */
-	-webkit-border-bottom-right-radius:10px; /* bottom right corner */
-	box-shadow: 1px 1px 4px #999;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; /* all corners */
 	-moz-box-shadow: 1px 1px 4px #999;
   -webkit-box-shadow: 1px 1px 4px #999;
+  box-shadow: 1px 1px 4px #999;
   margin: 0.5%;
   display: inline;
   clear: none;
@@ -379,4 +375,7 @@ li.highlight a {
 
 table {
   text-align: left;
+}
+.inline {
+  display: inline;
 }

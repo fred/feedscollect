@@ -1,0 +1,24 @@
+<% form_for @user_session, :url => user_session_path do |f| %>
+  <%= f.error_messages %>
+  
+  <fieldset>
+    
+    <legend><%= @title %></legend>
+
+    <%= f.label :login %>
+    <%= f.text_field :login, :size => 20 %>
+  
+    <%= f.label :password %>
+    <%= f.password_field :password, :size => 20 %>
+
+    <br />
+    
+    <label><%= f.check_box :remember_me %> Remember me</label>
+
+    <div class="submit">
+      <%= f.submit "Login" %>
+    </div>
+
+  </fieldset>
+  
+<% end %>
