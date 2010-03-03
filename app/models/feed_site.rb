@@ -43,7 +43,7 @@ class FeedSite < ActiveRecord::Base
   
   def save_details
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
-    return unless feed
+    return unless (feed and feed != 0)
     self.title = feed.title.to_s if self.title.to_s.blank?
     self.description = feed.class.to_s if self.description.to_s.blank?
     self.site_url = feed.url.to_s
