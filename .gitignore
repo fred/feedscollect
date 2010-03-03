@@ -14,3 +14,4 @@ public/system
 *.bak
 *~
 config/database.yml
+db/*.sql
