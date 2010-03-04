@@ -12,7 +12,7 @@
     <div class="box_content">
       <% feed_site.feed_entries.per_box.each do |t| %>
         <p>
-         - <%= link_to( h(t.title.to_s), 
+         - <%= link_to((t.title.to_s), 
               h(t.url), 
               :title => t.title.to_s,
               :class => "overflow_text"
