@@ -317,8 +317,8 @@ li.highlight a {
   text-align:left;
   width: 32%;
   float: left;
-  min-height: 214px;
   height: auto;
+  min-height: 286px;
   border: 1px solid #bbb;
   border-radius: 10px;
   -moz-border-radius: 10px;

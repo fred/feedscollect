@@ -15,7 +15,7 @@ STYLE NAME: Master stylesheet
 /* Common HTML tags */
 body
 {
-  overflow: hidden;
+  /*overflow: hidden;*/
   -webkit-text-size-adjust: none;
   width: auto;
 	background:#fff;
