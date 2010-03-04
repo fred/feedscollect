@@ -17,6 +17,7 @@
     <%= stylesheet_link_tag 'stylesheet_mobile'%>
     <%= stylesheet_link_tag 'table' %>
     <%= stylesheet_link_tag 'fieldset_mobile' %>
+    <%= stylesheet_link_tag 'nokia' if request.user_agent.downcase =~ /(nokia)|(symbian)/ %>
     <%= yield(:head) %>
   </head>
   <body>

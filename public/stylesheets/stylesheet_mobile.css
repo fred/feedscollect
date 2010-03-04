@@ -29,7 +29,8 @@ body
 /* Wrapper & Container */
 .wrapper
 {
-	width:280px;
+  font-size: 1.1em;
+	width:92%;
 	margin:auto;
 }
 
@@ -94,16 +95,6 @@ body
 	padding-left: 10px;
 }
 
-/* Images */
-.alignleft {
-	float:left;
-	margin:0 20px 10px 0;
-}
-
-.alignright {
-	float:right;
-	margin:0 0 10px 20px;
-}
 
 /* Positioning */
 .clear {
@@ -129,13 +120,13 @@ li.highlight a {
   float: left;
   padding-bottom: 6px;
   height: auto;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px; /* all corners */
-	-moz-box-shadow: 1px 1px 6px #999;
-  -webkit-box-shadow: 1px 1px 6px #999;
-  box-shadow: 1px 1px 6px #999;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; /* all corners */
+	-moz-box-shadow: 1px 1px 6px #888;
+  -webkit-box-shadow: 1px 1px 6px #888;
+  box-shadow: 1px 1px 6px #888;
   margin: 2px 0 12px 0;
   display: inline;
   clear: none;
