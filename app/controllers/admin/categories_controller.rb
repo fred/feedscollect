@@ -92,4 +92,5 @@ class Admin::CategoriesController < Admin::BaseController
       format.xml  { head :ok }
     end
   end
+  
 end

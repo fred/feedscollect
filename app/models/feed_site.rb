@@ -39,6 +39,7 @@ class FeedSite < ActiveRecord::Base
         logger.info "...success for feed: #{t.url}"
       end
     end
+    Category.all.each {|t| t.touch}
   end
   
   def save_details
