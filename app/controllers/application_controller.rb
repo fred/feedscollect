@@ -12,9 +12,15 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  before_filter :store_location
+  before_filter :set_feeds_per_page, :store_location, :set_iphone_format
   
-  before_filter :set_iphone_format
+  def set_feeds_per_page
+    if logged_in? && current_user.feeds_per_page
+      @feeds_per_page = current_user.feeds_per_page
+    else
+      @feeds_per_page = FeedEntry.default_per_box
+    end
+  end
   
   def is_iphone_request?
     request.user_agent.downcase =~ /(mobile\/.+safari)|(iphone)|(ipod)|(blackberry)|(symbian)|(series60)|(android)|(smartphone)|(wap)|(mobile)/
@@ -69,11 +75,6 @@ class ApplicationController < ActionController::Base
   def authorized_only
     redirect_to new_user_session_path unless authorized?
   end
-  
-  def set_current_user
-    User.current_user= current_user if logged_in?
-  end
-  
   
   ##################
   # LOCALE METHODS #

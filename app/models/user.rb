@@ -12,15 +12,15 @@ class User < ActiveRecord::Base
   
   before_destroy :keep_admin
   
-  def self.current_user
-    session = UserSession.find
-    if session
-      @current_user = session.user
-    else
-      @current_user = nil
-    end
-    @current_user
-  end
+  # def self.current_user
+  #   session = UserSession.find
+  #   if session
+  #     @current_user = session.user
+  #   else
+  #     @current_user = nil
+  #   end
+  #   @current_user
+  # end
   
   def admin?
     self.admin
