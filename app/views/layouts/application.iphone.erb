@@ -13,7 +13,7 @@
     <!-- End iPhone -->
 
     <title><%= @title %></title>
-    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'application_mobile' %>
     <%= stylesheet_link_tag 'stylesheet_mobile'%>
     <%= stylesheet_link_tag 'table' %>
     <%= stylesheet_link_tag 'fieldset_mobile' %>
@@ -35,20 +35,18 @@
 
   		<div class="content"><!-- Begin outer-space -->
 			  <%- flash.each do |name, msg| -%>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <%= content_tag :div, msg, :class => "#{name}" %>
         <%- end -%>
         <%= yield %>
   		</div><!-- End content -->
       
-      <div class="footer">
-  			<p>The Homepage for the Tech Savies ;)</p>
-  			<p>
-  			  <%= link_to image_tag("/images/top.png"), "#top"%>
-  			  <%= link_to "Top", root_path %>
-  			</p>
-  		</div>
+      <%= render :partial => "/shared/footer" %>
   		
   	</div><!-- End wrapper -->
+  	
+  	<% if RAILS_ENV == "production" && !authorized? %>
+  	  <%= render :partial => "/shared/ga" %>
+  	<% end %>
   	
   </body>
 </html>

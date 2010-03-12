@@ -32,7 +32,8 @@ class CategoriesController < ApplicationController
   
   
   def home
-    @category = Category.default_category
+    home_page_category_id = current_user ? current_user.home_page_category_id : nil
+    @category = Category.default_category(home_page_category_id)
     if @category.nil?
       @category = Category.find(:first)
     end

@@ -2,7 +2,11 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  
   helper :all # include all helpers, all the time
+  
+  helper_method :current_user_session, :current_user
+  
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
@@ -11,19 +15,47 @@ class ApplicationController < ActionController::Base
   before_filter :store_location
   
   before_filter :set_iphone_format
-
+  
   def is_iphone_request?
-    request.user_agent.downcase =~ /(mobile\/.+safari)|(iphone)|(blackberry)|(symbian)|(nokia)|(android)|(smartphone)|(wap)/
+    request.user_agent.downcase =~ /(mobile\/.+safari)|(iphone)|(ipod)|(blackberry)|(symbian)|(series60)|(android)|(smartphone)|(wap)|(mobile)/
   end
 
-  def set_iphone_format
-    if is_iphone_request? or params[:mobile]
-      request.format = :iphone
+  def set_iphone_format    
+    if params[:desktop]
+      set_desktop
+    elsif params[:mobile]
+      set_mobile
+    else
+      default_mode
+    end
+  end
+  
+  def set_desktop
+    session[:mobile] = nil
+    session[:desktop] = true
+    request.format = :html
+    logger.debug " *** Setting to Desktop Mode *** "
+  end
+  
+  def set_mobile
+    session[:desktop] = nil
+    session[:mobile] = true
+    request.format = :iphone
+    logger.debug " *** Setting to iPhone Mode *** "
+  end
+  
+  def default_mode
+    if is_iphone_request? or session[:mobile]
+      logger.debug " ** Default iPhone"
+      set_mobile
+    else
+      logger.debug " ** Default Desktop"
+      set_desktop
     end
   end
   
   def initialize
-    #@start_time = Time.now.usec
+    @start_time = Time.now.usec
   end
   
   def logged_in?
@@ -37,6 +69,78 @@ class ApplicationController < ActionController::Base
   def authorized_only
     redirect_to new_user_session_path unless authorized?
   end
+  
+  def set_current_user
+    User.current_user= current_user if logged_in?
+  end
+  
+  
+  ##################
+  # LOCALE METHODS #
+  ##################
+  
+  def default_language
+    "en"
+  end
+  
+  def get_locale_from_profile
+    if current_user && current_user.default_language
+      case current_user.default_language
+      when "Portugues"
+        session[:language] = "pt-BR"
+      when "English"
+        session[:language] = "en"
+      else
+        session[:language] = "en"
+      end
+      logger.debug "* Lang from user profile : #{current_user.default_language}"
+    end
+  end
+  
+  # retrieve the language from the session store, 
+  # otherwise set to default of pt-BR
+  def get_locale_from_session
+    if (session && session[:language])
+      lang = session[:language]
+    else
+      lang = default_language
+    end
+    lang
+  end
+  
+  # overwrite session language if params[:language] is given and fixate it
+  # params[:session] only accepts 'en' or 'th' (English or Thai)
+  # otherwise get from user profile
+  def get_locale
+    if (params[:language] && params[:language].to_s.match(/en|pt-BR/))
+      logger.debug "* Lang from headers : #{extract_locale_from_accept_language_header}"
+      logger.debug "* session[:language] was: '#{session[:language]}'"
+      session[:language] = params[:language]
+    elsif RAILS_ENV == "test"
+      session[:language] = "en"
+    else
+      session[:language] = get_locale_from_session
+    end
+    set_locale
+  end
+  
+  def set_locale
+    if session[:language]
+      set_locale_to(session[:language])
+    else
+      lang = extract_locale_from_accept_language_header
+      set_locale_to(default_language)
+    end
+  end
+  
+  def set_locale_to(lang)
+    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    I18n.locale = lang
+    logger.debug "* Locale set to '#{I18n.locale}'"
+    logger.debug "* session[:language] is '#{session[:language]}'"
+  end
+  
+  
   
   private
     def current_user_session

@@ -1,25 +1,22 @@
 <% form_for @user_session, :url => user_session_path do |f| %>
+  <div id="columnarForm">
+    <fieldset>
+      <legend><%= @title %></legend>
+      
+      <%= f.label :login %>
+      <%= f.text_field :login, :size => 24 %>
+      
+      
+      <%= f.label :password %>
+      <%= f.password_field :password, :size => 24 %>
+      
+      
+      <label><%= f.check_box :remember_me%> Remember me</label>
+      
+      
+        <%= f.submit "Login" %>
+      
+    </fieldset>
+  </div>
   <%= f.error_messages %>
-  
-  <br />
-  <fieldset>
-    
-    <legend><%= @title %></legend>
-
-    <%= f.label :login %>
-    <%= f.text_field :login, :size => 20 %>
-  
-    <%= f.label :password %>
-    <%= f.password_field :password, :size => 20 %>
-
-    <br />
-    
-    <label><%= f.check_box :remember_me%> Remember me</label>
-
-    <div class="submit">
-      <%= f.submit "Login" %>
-    </div>
-
-  </fieldset>
-  <br />
 <% end %>

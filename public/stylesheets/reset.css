@@ -16,7 +16,8 @@ h1,h2,h3,h4{font-size:100%;}
 ol,ul,li{list-style:none;}
 
 /* Removes border from image */
-fieldset,img{border:none;}
+/*fieldset{border:none;}*/
+img{border:none;}
 
 /* Removes links underline */
 a{text-decoration:none;}

@@ -5,6 +5,8 @@ class FeedSite < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :large => "200x30>", :medium => "180x28>", :small => "160x26>" }
   
   belongs_to :category
+  belongs_to :user
+  
   has_many :feed_entries, :order => "published DESC, id DESC", :dependent => :destroy
   
   # Change to after_create later
@@ -34,9 +36,13 @@ class FeedSite < ActiveRecord::Base
   
   def self.refresh
     FeedSite.all.each do |t|
-      logger.info "Refreshing feed: #{t.url}..."
+      msg = "Refreshing feed: #{t.id}..."
+      logger.info msg
+      puts msg
       if t.save
-        logger.info "...success for feed: #{t.url}"
+        msg = "...success for feed: #{t.id}"
+        logger.info msg
+        puts msg
       end
     end
     Category.all.each {|t| t.touch}

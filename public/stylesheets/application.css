@@ -1,6 +1,6 @@
 
 #container {
-  width: 95%;
+  width: 98%;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
@@ -28,45 +28,49 @@
 }
 
 
-
 .fieldWithErrors {
   display: inline;
 }
 
+.fieldWithErrors input {
+  border-color: red;
+}
+
 #errorExplanation {
-  width: 400px;
-  border: 2px solid #CF0000;
+  font-size: 1.1em;
+  float: left;
+  text-align: left;
+  width: 380px;
+  border: 2px solid #c44;
   padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+  margin: 25px 10px;
+  background-color: #FFE3D4;
 }
 
 #errorExplanation h2 {
+  display: none;
   text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
+  padding: 4px 4px 4px 12px;
+  font-size: 1.1em;
   margin: 0px;
-  background-color: #c00;
+  background-color: #c44;
   color: #fff;
 }
 
 #errorExplanation p {
-  color: #333;
+  color: #444;
   margin-bottom: 0;
   padding: 8px;
 }
 
 #errorExplanation ul {
-  margin: 2px 24px;
+  margin: 0;
+  padding: 0;
 }
 
 #errorExplanation ul li {
-  font-size: 12px;
+  margin: 0 0 5px 20px ;
+  padding: 0;
+  color: #444;
   list-style: disc;
-}
-
-.fields {
-  margin: 8px 0;
 }

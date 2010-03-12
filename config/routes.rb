@@ -10,10 +10,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :categories, :has_many => :feed_sites, :collection => {:home => [:any]}
 
+  map.resource :account, :controller => "users"
   map.resources :users
   map.resource :user_session
   map.login  "login",  :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
+  
+  map.signup 'signup', :controller => "users", :action => "new"
+  map.register 'register', :controller => "users", :action => "new" 
   
   # Admin home page
   map.admin "/admin", :controller => "admin/categories"

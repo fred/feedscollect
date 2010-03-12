@@ -1,3 +1,7 @@
+<script type="text/javascript">
+$('a[title]').qtip({ style: { name: 'cream', tip: true } })
+</script>
+
 <% cache "categories/#{@category.id}" do %>
 
   <br />
@@ -19,8 +23,7 @@
           <p>
            - <%= link_to( (t.title.to_s), 
                 h(t.url), 
-                :title => t.title.to_s,
-                :class => "overflow_text"
+                :title => t.title.to_s
                 )
             %>
           </p>

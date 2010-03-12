@@ -275,12 +275,12 @@ a:hover
 }
 
 /* Footer */
-#footer
+.footer
 {
-	height:70px;
+  font-size: 1.2em;
 	text-align:center;
 	padding-bottom:10px;
-	margin:20px 0;
+	margin:18px 0 40px 0;
 	color:#888;
 	letter-spacing:2px;
 }
@@ -304,7 +304,7 @@ a:hover
 /* End Of File */
 
 input {
-  padding: 4px;
+  padding: 5px;
   border: 1px solid #999;
   margin: 2px;
 }

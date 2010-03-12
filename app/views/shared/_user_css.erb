@@ -1,0 +1,7 @@
+<% if logged_in? && current_user.font_size %>
+<style>
+  body{
+    font-size: <%= current_user.font_size %>em;
+  }
+</style>
+<% end %>
