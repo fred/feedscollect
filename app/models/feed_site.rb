@@ -54,9 +54,9 @@ class FeedSite < ActiveRecord::Base
     self.title = feed.title.to_s if self.title.to_s.blank?
     self.description = feed.class.to_s if self.description.to_s.blank?
     self.site_url = feed.url.to_s
-    if (feed.etag && (feed.etag.to_s != self.etag)) or (feed.last_modified.to_i > self.last_modified.to_i) 
+    if (feed.etag && (feed.etag.to_s != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+300)) 
       feed.entries.each do |t| 
-        if t.last_modified.to_i > self.last_modified.to_i
+        if t.last_modified.to_i > (self.last_modified.to_i+30)
           fi = FeedEntry.new
           fi.title = t.title
           fi.url = t.url
