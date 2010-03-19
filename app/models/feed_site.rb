@@ -12,6 +12,8 @@ class FeedSite < ActiveRecord::Base
   # Change to after_create later
   before_save :save_details
   
+  after_save :clean_older_feeds
+  
   FEED_TYPES = [ 
     {:id => 1, :name => "atom"}, 
     {:id => 2, :name => "atom_feedburner"},
@@ -23,8 +25,8 @@ class FeedSite < ActiveRecord::Base
   def clean_older_feeds
     total = self.feed_entries.count
     total = (total-50) if (total>50)
-    query = "delete from feed_entries where parent_id = #{self.id} order by id ASC limit #{total}"
-    execute(query)
+    sql = "delete from feed_entries where feed_site_id = #{self.id} order by id ASC limit #{total}"
+    ActiveRecord::Base.connection.execute(sql)
   end
   
   def skip_refresh
@@ -69,7 +71,7 @@ class FeedSite < ActiveRecord::Base
           fi.title = t.title
           fi.url = t.url
           fi.author = t.author
-          fi.summary = t.summary
+          #fi.summary = t.summary
           #fi.content = t.content
           fi.published = t.published
           fi.save
