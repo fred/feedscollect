@@ -21,10 +21,10 @@ class FeedSite < ActiveRecord::Base
     {:id => 4, :name => "itunes_rss"}
   ]
   
-  # Clear older feed_entries leaving only the 50 newest
+  # Clear older feed_entries leaving only the 100 newest
   def clean_older_feeds
     total = self.feed_entries.count
-    total = (total-50) if (total>50)
+    total = (total-100) if (total>100)
     sql = "delete from feed_entries where feed_site_id = #{self.id} order by id ASC limit #{total}"
     ActiveRecord::Base.connection.execute(sql)
   end
