@@ -8,5 +8,4 @@ class FeedEntry < ActiveRecord::Base
   
   named_scope :per_box, :limit => default_per_box
   
-  
 end
