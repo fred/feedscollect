@@ -16,7 +16,7 @@ STYLE NAME: Master stylesheet
 body
 {
   /*overflow: hidden;*/
-  -webkit-text-size-adjust: auto;
+  -webkit-text-size-adjust: none;
   width: auto;
 	background:#fff;
 	font: 76%/115% georgia,verdana,arial;
