@@ -16,7 +16,8 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @feed_sites = @category.feed_sites
-
+    session[:last_category] = @category.id
+    
     if @category.description.to_s.blank?
       @title = @category.title
     else
@@ -32,11 +33,12 @@ class CategoriesController < ApplicationController
   
   
   def home
-    home_page_category_id = current_user ? current_user.home_page_category_id : nil
+    home_page_category_id = nil
+    home_page_category_id = session[:last_category] if session[:last_category]
+    home_page_category_id = current_user.home_page_category_id if current_user
+    
     @category = Category.default_category(home_page_category_id)
-    if @category.nil?
-      @category = Category.find(:first)
-    end
+
     params[:id] = @category.id
     @feed_sites = @category.feed_sites(:include => :feed_entries)
     if @category.description.to_s.blank?

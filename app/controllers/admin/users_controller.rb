@@ -1,69 +1,61 @@
 class Admin::UsersController < Admin::BaseController
-  
-  # GET /users
-  # GET /users.xml
+
+  # GET /admin/users
+  # GET /admin/users.xml
   def index
-    @users = User.all
+    @users = User.paginate :page => params[:page], 
+      :per_page => @per_page, 
+      :order => "id DESC"
 
     respond_to do |format|
       format.html # index.html.erb
+      format.iphone # index.iphone.erb
       format.xml  { render :xml => @users }
     end
   end
 
-  # GET /users/1
-  # GET /users/1.xml
+  # GET /admin/users/1
+  # GET /admin/users/1.xml
   def show
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
+      format.iphone # show.iphone.erb
       format.xml  { render :xml => @user }
     end
+    
   end
 
-  # GET /users/new
-  # GET /users/new.xml
+  # GET /admin/users/new
+  # GET /admin/users/new.xml
   def new
     @user = User.new
 
     respond_to do |format|
       format.html # new.html.erb
+      format.iphone # new.iphone.erb
       format.xml  { render :xml => @user }
     end
   end
 
-  # GET /users/1/edit
+  # GET /admin/users/1/edit
   def edit
     @user = User.find(params[:id])
+  rescue
+    @user = current_user
   end
 
-  # POST /users
-  # POST /users.xml
-  def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = 'User was successfully created.'
-        format.html { redirect_to(admin_users_url) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /users/1
-  # PUT /users/1.xml
+  # PUT /admin/users/1
+  # PUT /admin/users/1.xml
   def update
     @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'User was successfully updated.'
-        format.html { redirect_to(admin_users_url) }
+        #@user.update_roles(params[:user][:role_ids])
+        flash[:success] = 'User was successfully updated.'
+        format.iphone { redirect_to admin_users_path }
+        format.html { redirect_to admin_users_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -72,15 +64,47 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
+  # DELETE /admin/users/1
+  # DELETE /admin/users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-
+    
     respond_to do |format|
-      format.html { redirect_to(admin_users_url) }
-      format.xml  { head :ok }
+      if @user.destroy
+        flash[:success] = "User deleted"
+        format.xml  { head :ok }
+      else
+        flash[:error] = "Could not delete user"
+      end
+      format.iphone { redirect_to(admin_users_path) }
+      format.html { redirect_to(admin_users_path) }
     end
+  end
+  
+  # POST /admin/users
+  # POST /admin/users.xml
+  def create
+    @user = User.new(params[:user])
+    success = @user && @user.save
+    if success && @user.errors.empty?
+      redirect_to(admin_users_path)
+      flash[:success] = "User has been created."
+    else
+      flash[:error]  = "User could not be created."
+      render :action => 'new'
+    end
+  end
+  
+
+  private
+  
+  def destroy_denied
+    flash[:error] = "Error: You cannot delete this user."
+    redirect_to admin_users_path
+  end
+  
+  def record_not_found
+    flash[:error] = "Error: User not found."
+    redirect_to admin_users_path
   end
 end

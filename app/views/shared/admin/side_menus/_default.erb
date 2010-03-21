@@ -1,0 +1,45 @@
+<div class="urbangreymenu">
+  
+  <h3 class="headerbar">Menu</h3>
+  
+  <ul>
+    <li>
+      <%= link_to("All Jobs", admin_jobs_path, :class => is_current_menu("jobs")) if current_user.has_role?("jobs_show") %>
+    </li>
+    <li>
+      <%= link_to("Customers", admin_customers_path, :class => is_current_menu("customers")) if current_user.has_role?("customers_show") %>
+    </li>
+    <li>
+      <%= link_to("Contracts", admin_contracts_path, :class => is_current_menu("contracts")) if current_user.has_role?("contracts_show") %>
+    </li>
+    <li>
+      <%= link_to("Messages", admin_messages_path, :class => is_current_menu("messages")) if current_user.has_role?("messages_show") %>
+    </li>
+    <li>
+      <%= link_to("Comments", admin_comments_path, :class => is_current_menu("comments")) if current_user.has_role?("comments_show") %>
+    </li>
+    <li>
+      <%= link_to("Users", admin_users_path, :class => is_current_menu("users")) if current_user.has_role?("users_show") %>
+    </li>
+    <li>
+      <%= link_to("Roles", admin_roles_path, :class => is_current_menu("roles")) if current_user.has_role?("roles_show") %>
+    </li>
+    <li>
+      <%= link_to("Pages", admin_pages_path, :class => is_current_menu("pages")) if current_user.has_role?("pages_show") %>
+    </li>
+    <li>
+      <%= link_to("Attachments", admin_attachments_path, :class => is_current_menu("attachments")) if current_user.has_role?("attachments_show") %>
+    </li>
+    <li>
+      <%= link_to("Reports", admin_reports_path, :class => is_current_menu("reports")) if current_user.has_role?("reports_show") %>
+    </li>
+    <li>
+      <%= link_to("Job Categories", admin_categories_path, :class => is_current_menu("categories")) if current_user.has_role?("categories_show") %>
+    </li>
+    <li>
+      <%= link_to("Settings", admin_settings_path, :class => is_current_menu("settings")) if current_user.has_role?("settings_show") %>
+    </li>
+  </ul>
+
+</div>
+

@@ -1,0 +1,23 @@
+<div class="urbangreymenu">
+  <h3 class="headerbar">Settings Menu</h3>
+  <ul>
+    <li>
+      <%= link_to t("cities"), admin_cities_path, :class => is_current_menu("cities") %>
+    </li>
+    <li>
+      <%= link_to t("categories"), admin_categories_path, :class => is_current_menu("categories") %>
+    </li>
+    <li>
+      <%= link_to t("locations"), admin_locations_path, :class => is_current_menu("locations") %>
+    </li>
+    <li>
+      <%= link_to t("languages"), admin_languages_path, :class => is_current_menu("languages") %>
+    </li>
+    <li>
+      <%= link_to t("pages"), admin_pages_path, :class => is_current_menu("pages") %>
+    </li>
+    <li>
+      <%= link_to t("settings"), admin_settings_path, :class => is_current_menu("settings") %>
+    </li>
+  </ul>
+</div>

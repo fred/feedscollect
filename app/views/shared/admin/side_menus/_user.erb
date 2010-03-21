@@ -1,0 +1,39 @@
+<div class="urbangreymenu">
+  <h3 class="headerbar">User Menu</h3>
+  <ul>
+    <li>
+      <%= link_to "All Jobs", admin_jobs_path, :class => is_current_menu("jobs") %>
+    </li>
+    <li>
+      <%= link_to "Customers", admin_customers_path, :class => is_current_menu("customers") %>
+    </li>
+    <li>
+      <%= link_to "Contracts", admin_contracts_path, :class => is_current_menu("contracts") %>
+    </li>
+    <li>
+      <%= link_to "Messages", admin_messages_path, :class => is_current_menu("messages") %>
+    </li>
+    <li>
+      <%= link_to "Comments", admin_comments_path, :class => is_current_menu("comments") %>
+    </li>
+    <li>
+      <%= link_to "Users", admin_users_path, :class => is_current_menu("users") %>
+    </li>
+    <li>
+      <%= link_to "Roles", admin_roles_path, :class => is_current_menu("roles") %>
+    </li>
+    <li>
+      <%= link_to "Pages", admin_pages_path, :class => is_current_menu("pages") %>
+    </li>
+    <li>
+      <%= link_to "Files", admin_attachments_path, :class => is_current_menu("attachments") %>
+    </li>
+    
+    <li>
+      <%= link_to "Job Categories", admin_categories_path, :class => is_current_menu("categories") %>
+    </li>
+    <li>
+      <%= link_to "Settings", admin_settings_path, :class => is_current_menu("settings") %>
+    </li>
+  </ul>
+</div>

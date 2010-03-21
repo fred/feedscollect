@@ -1,0 +1,68 @@
+<% title "Feed Site" %>
+
+<p>
+  <strong>Title:</strong>
+  <%=h @feed_site.title %>
+</p>
+<p>
+  <strong>Desc:</strong>
+  <%=h @feed_site.description %>
+</p>
+<p>
+  <strong>URL:</strong>
+  <%=h @feed_site.url %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%=h @feed_site.category_name %>
+</p>
+
+<p>
+  <strong>eTag:</strong>
+  <%=h @feed_site.etag %>
+</p>
+
+<p>
+  <strong>Last Modified:</strong>
+  <%=h @feed_site.last_modified %>
+</p>
+
+<p>
+  <strong>Entries:</strong>
+  <%=h @feed_site.feed_entries.count %>
+</p>
+
+<p>
+  <%= image_tag @feed_site.avatar.url(:small) %>
+  <%= image_tag @feed_site.avatar.url(:medium) %>
+  <%= image_tag @feed_site.avatar.url(:large) %>
+  <%= image_tag @feed_site.avatar.url(:original) %>
+</p>
+
+<table id="hor-minimalist-b">
+  <tr>
+    <th>Title</th>
+    <th>Url</th>
+    <th>Author</th>
+    <th>Date</th>
+    <th> </th>
+  </tr>
+  <% for feed_entry in @feed_site.feed_entries %>
+    <tr>
+      <td><%= link_to h(feed_entry.title), h(feed_entry.url) %></td>
+      <td><%=link_to h(feed_entry.url), h(feed_entry.url) %></td>
+      <td><%=h feed_entry.author %></td>
+      <td><%=h feed_entry.published.to_s(:short) %></td>
+      <td><%= link_to "Del", admin_feed_entry_path(feed_entry), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<br />
+<p>
+  <%= link_to "Edit", edit_admin_feed_site_path(@feed_site) %> |
+  <%= link_to "Destroy", admin_feed_site_path(@feed_site), :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_feed_sites_url %>
+</p>

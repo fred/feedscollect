@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register 'register', :controller => "users", :action => "new" 
   
   # Admin home page
-  map.admin "/admin", :controller => "admin/categories"
+  map.admin "/admin", :controller => "admin/dashboard"
   
   # Admin
   map.namespace :admin do |admin|

@@ -1,0 +1,5 @@
+<% form_for @feed_entry, :url => admin_feed_entries_path do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<p><%= link_to "Back to List", feed_entries_path %></p>

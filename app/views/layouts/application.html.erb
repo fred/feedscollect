@@ -18,6 +18,17 @@
   </head>
   <body>
     
+    <div id="top">
+      <% if logged_in? %>
+        <%= link_to "My Profile", edit_account_path %>
+        <%= link_to "Logout", logout_path %>
+      <% else %>
+        <%= link_to "Login", login_path %>
+        <%= link_to "Register", register_path %>
+      <% end %>
+      <%= link_to "Mobile",  {:mobile => "true"} %>
+    </div>
+    
     <div id="wrapper"><!-- Begin wrapper -->
 
   		<div id="header"><!-- Begin header -->

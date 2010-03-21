@@ -12,15 +12,11 @@ class User < ActiveRecord::Base
   
   before_destroy :keep_admin
   
-  # def self.current_user
-  #   session = UserSession.find
-  #   if session
-  #     @current_user = session.user
-  #   else
-  #     @current_user = nil
-  #   end
-  #   @current_user
-  # end
+  # get users that have requests within the last 24 hours
+  def self.last_logged
+    time = Time.now - (3600*24)
+    self.find(:all, :conditions => ["last_request_at > ?",time], :order => "last_request_at DESC")
+  end
   
   def admin?
     self.admin

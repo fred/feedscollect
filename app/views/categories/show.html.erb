@@ -1,10 +1,4 @@
-<script type="text/javascript">
-$('a[title]').qtip({ style: { name: 'cream', tip: true } })
-</script>
-
 <% cache "categories/#{@category.id}" do %>
-
-  <br />
   <% i = 1 %>
   <% for feed_site in @feed_sites %>
     <% i+=1 %>

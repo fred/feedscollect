@@ -13,11 +13,11 @@
     <!-- End iPhone -->
 
     <title><%= @title %></title>
-    <%= stylesheet_link_tag 'application_mobile' %>
-    <%= stylesheet_link_tag 'stylesheet_mobile'%>
-    <%= stylesheet_link_tag 'table' %>
-    <%= stylesheet_link_tag 'fieldset_mobile' %>
-    <%= stylesheet_link_tag 'nokia' if request.user_agent.downcase =~ /(nokia)|(symbian)/ %>
+    <%= stylesheet_link_tag 'mobile/application' %>
+    <%= stylesheet_link_tag 'mobile/stylesheet'%>
+    <%= stylesheet_link_tag 'mobile/table' %>
+    <%= stylesheet_link_tag 'mobile/fieldset' %>
+    <%= stylesheet_link_tag 'mobile/nokia' if request.user_agent.downcase =~ /(nokia)|(symbian)/ %>
     <%= yield(:head) %>
   </head>
   <body>
