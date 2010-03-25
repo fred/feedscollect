@@ -1,4 +1,5 @@
 class FeedSite < ActiveRecord::Base
+  require 'timeout'
   
   attr_writer :skip_refresh
   
@@ -51,18 +52,33 @@ class FeedSite < ActiveRecord::Base
       msg = "Refreshing feed: #{t.id}..."
       logger.info msg
       puts msg
-      if t.save
-        msg = "...success for feed: #{t.id}"
-        logger.info msg
-        puts msg
+      
+      # 3 minutes
+      begin 
+        Timeout::timeout(180) { 
+          if t.save
+            msg = "...success for feed: #{t.id}"
+          else
+            msg = "...cannot save feed: #{t.id}"
+          end          
+        }
+      rescue Timeout::Error
+        msg = "...timeout for feed #{t.id}"
       end
+      
+      logger.info msg
+      puts msg
     end
     Category.all.each {|t| t.touch}
   end
   
   def save_details
+    feed = nil
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
-    return unless (feed and feed != 0)
+    if (feed.nil? and (feed.is_a? Fixnum))
+      put "  Error: #{feed}"
+      return false
+    end
     self.title = feed.title.to_s if self.title.to_s.blank?
     self.description = feed.class.to_s if self.description.to_s.blank?
     self.site_url = feed.url.to_s
