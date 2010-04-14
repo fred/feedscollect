@@ -1,6 +1,15 @@
 module Paperclip
   module Shoulda
     module Matchers
+      # Ensures that the given instance or class validates the content type of
+      # the given attachment as specified.
+      #
+      # Example:
+      #   describe User do
+      #     it { should validate_attachment_content_type(:icon).
+      #                   allowing('image/png', 'image/gif').
+      #                   rejecting('text/plain', 'text/xml') }
+      #   end
       def validate_attachment_content_type name
         ValidateAttachmentContentTypeMatcher.new(name)
       end
@@ -22,6 +31,7 @@ module Paperclip
 
         def matches? subject
           @subject = subject
+          @subject = @subject.class unless Class === @subject
           @allowed_types && @rejected_types &&
           allowed_types_allowed? && rejected_types_rejected?
         end
