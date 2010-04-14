@@ -47,15 +47,16 @@ class FeedSite < ActiveRecord::Base
     self.save
   end
   
-  def self.refresh
-    FeedSite.all.each do |t|
+  def self.refresh(start=1)
+    all_feeds = FeedSite.find(:all, :conditions => ["id >= ?", start])
+    all_feeds.each do |t|
       msg = "Refreshing feed: #{t.id}..."
       logger.info msg
       puts msg
       
-      # 3 minutes
-      begin 
-        Timeout::timeout(180) { 
+      # 2 minutes
+      begin
+        Timeout::timeout(120) {
           if t.save
             msg = "...success for feed: #{t.id}"
           else
@@ -77,7 +78,7 @@ class FeedSite < ActiveRecord::Base
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
     # sometimes we get 404 errors on feeds (Fixnum)
     if (feed.nil? or (feed.is_a? Fixnum) or feed.class.to_s.match("Feedzirra").nil?)
-      put " *** Error: #{feed}"
+      puts " *** Error: #{feed}"
       return false
     end
     self.title = feed.title.to_s if self.title.to_s.blank?
