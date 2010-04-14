@@ -10,7 +10,7 @@ STYLE NAME: Master stylesheet
 ======================================*/
 
 /* Import external stylesheet */
-@import url('reset.css');
+/* @import url('reset.css'); */
 
 /* Common HTML tags */
 body
