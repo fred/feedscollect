@@ -54,9 +54,9 @@ class FeedSite < ActiveRecord::Base
       logger.info msg
       puts msg
       
-      # 2 minutes
+      # 1 minute timeout
       begin
-        Timeout::timeout(120) {
+        Timeout::timeout(60) {
           if t.save
             msg = "...success for feed: #{t.id}"
           else
@@ -78,7 +78,9 @@ class FeedSite < ActiveRecord::Base
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
     # sometimes we get 404 errors on feeds (Fixnum)
     if (feed.nil? or (feed.is_a? Fixnum) or feed.class.to_s.match("Feedzirra").nil?)
-      puts " *** Error: #{feed}"
+      msg=" *** Error: #{feed}"
+      puts msg
+      logger.info msg
       return false
     end
     self.title = feed.title.to_s if self.title.to_s.blank?
