@@ -10,7 +10,7 @@
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= link_to category.title.to_s, admin_category_feed_sites_url  (category) %></td>
+    <td><%= link_to category.title.to_s, admin_category_feed_sites_url(category) %></td>
     <td><%= category.description %></td>
     <td><%= link_to(category.feed_sites.count, admin_category_feed_sites_url(category)) %></td>
     <td><%= link_to "Show", admin_category_path(category) %> </td>

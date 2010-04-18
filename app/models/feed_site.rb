@@ -25,8 +25,8 @@ class FeedSite < ActiveRecord::Base
   # Clear older feed_entries leaving only the 100 newest
   def clean_older_feeds
     total = self.feed_entries.count
-    if (total>100)
-      total = (total-100) 
+    if (total>200)
+      total = (total-200) 
       sql = "delete from feed_entries where feed_site_id = #{self.id} order by id ASC limit #{total}"
       ActiveRecord::Base.connection.execute(sql)
     end
@@ -71,6 +71,7 @@ class FeedSite < ActiveRecord::Base
       puts msg
     end
     Category.all.each {|t| t.touch}
+    GC.start
   end
   
   def save_details
@@ -86,9 +87,9 @@ class FeedSite < ActiveRecord::Base
     self.title = feed.title.to_s if self.title.to_s.blank?
     self.description = feed.class.to_s if self.description.to_s.blank?
     self.site_url = feed.url.to_s
-    # Skip 10 minutes, might loose a few feeds, 
+    # Skip 5 minutes, might loose a few feeds, 
     # will happen rarelly, but helps to avoid dupplicate entries 
-    if (feed.etag && (feed.etag.to_s != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+600)) 
+    if (feed.etag && (feed.etag.to_s != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+300))
       feed.entries.each do |t|
         # allow 10 seconds delay for feed saving, to avoid dupplicates 
         # again, might loose a feed in rare cases,

@@ -26,7 +26,7 @@ class Admin::FeedSitesController < Admin::BaseController
     @feed_site = FeedSite.new(params[:feed_site])
     if @feed_site.save
       flash[:notice] = "Successfully created feed site."
-      redirect_to admin_edit_feed_site(@feed_site)
+      redirect_to admin_feed_site(@feed_site)
     else
       render :action => 'new'
     end
@@ -41,7 +41,7 @@ class Admin::FeedSitesController < Admin::BaseController
     @feed_site = FeedSite.find(params[:id])
     if @feed_site.update_attributes(params[:feed_site])
       flash[:notice] = "Successfully updated feed site."
-      redirect_to admin_edit_feed_site(@feed_site)
+      redirect_to admin_feed_site(@feed_site)
     else
       render :action => 'edit'
     end
