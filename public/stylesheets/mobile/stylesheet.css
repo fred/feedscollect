@@ -57,7 +57,7 @@ a:hover {
 .header h1 a
 {
   text-decoration: underline;
-	font-size:2.0em;
+	font-size:1.2em;
 	font-weight:normal;
 	color:#666;
 }
@@ -74,13 +74,12 @@ a:hover {
   margin: 0;
   padding: 0;
 }
-.header li
-{
+.header li {
   font-weight: bold;
   display: inline;
-	font-size:1.1em;
+	font-size:1.2em;
 	color:#888;
-	margin: 0px 6px;
+	margin: 0px 10px;
 	letter-spacing:0;
 }
 .header li a {
@@ -149,9 +148,13 @@ li.highlight a {
   margin: 0;
 }
 .box_title p {
-  margin: 3px 3px 0px 8px;
+  margin: 0px 0px 0px 0px;
+  padding: 8px;
 }
 
+.box_title img { 
+  border: none;
+}
 .box_content {
   font-size: 1em;
   padding: 0px 6px 3px 3px;
