@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
   
   def is_iphone_request?
-    request.user_agent.downcase =~ /(mobile\/.+safari)|(iphone)|(ipod)|(blackberry)|(symbian)|(series60)|(android)|(smartphone)|(wap)|(mobile)/
+    request.user_agent.downcase =~ /(mobile\/.+safari)|(fennec)|(iphone)|(ipod)|(blackberry)|(symbian)|(series60)|(android)|(smartphone)|(wap)|(mobile)/
   end
 
   def set_iphone_format    

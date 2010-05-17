@@ -1,6 +1,27 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def default_font_size
+    "1"
+  end
+  
+  def set_font_size(size=nil)
+    if size
+      session[:font_size] = size
+    else
+      session[:font_size] = default_font_size
+    end
+  end
+  
+  def get_font_size
+    if session[:font_size]
+      session[:font_size]
+    else
+      default_font_size
+    end
+    
+  end
+  
   # Request from an iPhone or iPod touch? (Mobile Safari user agent)
   def iphone_user_agent?
     request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"] =~ /(Mobile\/.+Safari)|(Blackberry)|(Symbian)|(Nokia)/

@@ -16,7 +16,7 @@ STYLE NAME: Master stylesheet
 body
 {
 	background:#fff;
-	font: 76%/115% georgia,verdana,arial;
+	font: 80%/115% georgia,verdana,arial;
 	text-align:left;
 	line-height:20px;
 	color:#444;
@@ -338,7 +338,7 @@ li.highlight a {
   display: inline;
   clear: none;
   background-color: #fff;
-  min-height: 300px;
+  min-height: 312px;
 }
 .box_title {
   text-align:left;
@@ -378,7 +378,7 @@ li.highlight a {
 	width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	margin: 0;
+	margin: 0 0 1px 0;
 	padding: 0;
 }
 
