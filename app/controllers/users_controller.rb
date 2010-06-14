@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.admin = false
     if @user.save
+      @user.categories << Category.find(:all, :conditions => ["owner_id = ?",false])
       flash[:success] = "Registration successful."
       redirect_to edit_account_path
     else

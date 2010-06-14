@@ -1,2 +1,20 @@
-<p><%= @feed_entry.url %> </p>
-<p><%= @feed_entry.title %> </p>
+<div class="feed_item">
+  
+  <h3><%= @feed_entry.title %> </h3>
+  
+  <p><%= @feed_entry.published.to_s(:short) %> - <%= link_to "Source", @feed_entry.url %></p>
+  
+  <p><strong>Author:</strong> <%= @feed_entry.author %></p>
+  
+  <p>
+    <strong>Summary:</strong> 
+    <%= sanitize(@feed_entry.summary, :tags => %w(a p h1 h2 h3 h4 pre table tr td), :attributes => %w(id class style)) %>
+  </p>
+  
+  <p>
+    <%= sanitize(@feed_entry.content, :tags => %w(a p h1 h2 h3 h4 pre table tr td), :attributes => %w(id class style)) %>
+  </p>
+  
+</div>
+
+<h3><%= link_to "Back", @feed_entry.feed_site %></h3>

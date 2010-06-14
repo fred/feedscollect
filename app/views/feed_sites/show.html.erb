@@ -1,14 +1,26 @@
-<p>
-  <strong>URL:</strong>
-  <%= link_to h(@feed_site.url), h(@feed_site.url) %>
-  &nbsp;
-  <strong>Category:</strong>
-  <%=h @feed_site.category_name %>
-  &nbsp;
-  <strong>Last Modified:</strong>
-  <%=h @feed_site.last_modified %>
-</p>
+<% title h(@feed_site.title) %>
 
-<% @feed_site.feed_entries.each do |t| %>
-  <p><%= link_to t.title, t.url %></p>
-<% end %>
+<table id="hor-minimalist-b">
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th>Summary</th>
+    <th>Author</th>
+    <th>Date</th>
+    <th> </th>
+  </tr>
+  <% for feed_entry in @feed_site.feed_entries %>
+    <tr <%= "class='unread'" if feed_entry.unread %>>
+      <td> <%= link_to h(feed_entry.title), feed_entry %> </td>
+      <td> <%= link_to "Source", h(feed_entry.url) %> </td>
+      <td> <%= link_to truncate(h(feed_entry.summary), :omission => "...", :length => 200), feed_entry %> </td>
+      <td> <%=h feed_entry.author %> </td>
+      <td> <%=h feed_entry.published.to_s(:short) %> </td>
+      <td> <%= link_to "Del", feed_entry_path(feed_entry), :confirm => 'Are you sure?', :method => :delete %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+<h3><%= link_to "Back", feed_sites_url %> - <%= link_to "Edit", edit_feed_site_path(@feed_sites) %></h3>
+<br />

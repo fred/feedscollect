@@ -9,6 +9,7 @@
 }
 
 #flash_notice, #flash_error {
+  font-size:1.2em;
   padding: 5px 8px;
   margin: 10px 0;
 }

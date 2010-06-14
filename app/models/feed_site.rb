@@ -98,8 +98,8 @@ class FeedSite < ActiveRecord::Base
           fi.title = t.title
           fi.url = t.url
           fi.author = t.author
-          # fi.summary = t.summary
-          # fi.content = t.content
+          fi.summary = t.summary if self.user_id
+          fi.content = t.content if self.user_id
           fi.published = t.published
           fi.save
           self.feed_entries << fi

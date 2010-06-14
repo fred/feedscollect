@@ -4,8 +4,10 @@
     <th>Category</th>
     <th>Rss</th>
     <th>Site</th>
+    <th>Logo</th>
     <th>Sort</th>
-    <th>Last Update</th>
+    <th>Last Modified</th>
+    <th>ETAG</th>
     <th>Entries</th>
     <th> </th>
     <th> </th>
@@ -16,8 +18,10 @@
       <td><%= link_to(feed_site.category_name, category_path(feed_site.category)) if feed_site.category %></td>
       <td><%= link_to("Rss",  h(feed_site.url)) %></td>
       <td><%= link_to("Site", h(feed_site.site_url)) %></td>
+      <td><%= feed_site.avatar? ? "Yes" : "No" %></td>
       <td><%= feed_site.sort_order %></td>
       <td><%=h feed_site.last_modified.to_s(:short) if feed_site.last_modified %></td>
+      <td><%=h feed_site.etag ? "Yes" : "No" %></td>
       <td><%=h feed_site.feed_entries.count %></td>
       <td><%= link_to "Edit", edit_feed_site_path(feed_site) %></td>
       <td><%= link_to "Del", feed_site_path(feed_site), :confirm => 'Are you sure?', :method => :delete %></td>

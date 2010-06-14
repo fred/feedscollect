@@ -1,0 +1,5 @@
+<% form_for @feed_site, :url => {:action => "update" }, :html => { :multipart => true } do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<h3><%= link_to "Back", feed_sites_url %> </h3>

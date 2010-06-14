@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
   class DestroyDenied
   end
   
+  has_and_belongs_to_many :categories
   has_many :feed_sites
+  has_many :own_categories, :class_name => "Category", :foreign_key => "owner_id"
   
   acts_as_authentic
   
@@ -34,6 +36,5 @@ class User < ActiveRecord::Base
       raise Exceptions::DestroyDenied
     end
   end
-  
-  
+    
 end

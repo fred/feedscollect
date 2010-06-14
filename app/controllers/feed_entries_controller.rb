@@ -14,6 +14,7 @@ class FeedEntriesController < ApplicationController
   # GET /feed_entries/1.xml
   def show
     @feed_entry = FeedEntry.find(params[:id])
+    @feed_entry.set_read
     @title = @feed_entry.title
     respond_to do |format|
       format.html # show.html.erb

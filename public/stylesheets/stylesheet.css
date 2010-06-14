@@ -60,7 +60,7 @@ blockquote
 
 #header h1 a
 {
-	font-size:2.4em;
+	font-size:2.0em;
 	font-weight:normal;
 	color:#666;
 }
@@ -363,7 +363,7 @@ li.highlight a {
 }
 .box_content a:visited {
   text-align:left;
-  color: #888;
+  color: #aaa;
 }
 .box_content a:hover {
   color: #f25f0f;
@@ -387,4 +387,17 @@ table {
 }
 .inline {
   display: inline;
+}
+
+.feed_item {
+  margin: 5px;
+  padding: 10px;
+  text-align: left;
+}
+.feed_item pre {
+  border: none;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  margin: 6px;
+  font-family: georgia,verdana,arial;
 }

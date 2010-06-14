@@ -8,8 +8,15 @@
     <fieldset>
       <legend>Extra</legend>
       <%= render :partial => "form_extended", :locals => {:form => f} %>
-      <%= f.submit "Update" %>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Categories</legend>
+      <%= render :partial => "form_extended2", :locals => {:form => f} %>
     </fieldset>
   </div>
+  <br clear="both"/>
+  <%= f.submit "Update" %>
+  
   <%= f.error_messages %>
 <% end %>

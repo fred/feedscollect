@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100305184146) do
+ActiveRecord::Schema.define(:version => 20100614062335) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -18,18 +18,25 @@ ActiveRecord::Schema.define(:version => 20100305184146) do
     t.datetime "updated_at"
     t.string   "permalink"
     t.boolean  "default_home", :default => false
+    t.integer  "owner_id"
+  end
+
+  create_table "categories_users", :id => false, :force => true do |t|
+    t.integer "category_id"
+    t.integer "user_id"
   end
 
   create_table "feed_entries", :force => true do |t|
     t.string   "title"
     t.string   "url"
     t.string   "author"
-    t.string   "summary"
-    t.string   "content"
+    t.text     "summary"
+    t.text     "content"
     t.datetime "published"
     t.integer  "feed_site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "unread",       :default => true
   end
 
   create_table "feed_sites", :force => true do |t|
@@ -72,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20100305184146) do
     t.datetime "updated_at"
     t.string   "full_name"
     t.integer  "feeds_per_page"
-    t.float    "font_size",             :default => 1.0
+    t.float    "font_size",             :default => 0.7
     t.integer  "home_page_category_id"
   end
 

@@ -33,7 +33,6 @@ class Admin::CategoriesController < Admin::BaseController
   def new
     @category = Category.new
     @title = "New Category"
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @category }
@@ -51,7 +50,7 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(params[:category])
     @title = "New Category"
-
+    
     respond_to do |format|
       if @category.save
         flash[:notice] = 'Category was successfully created.'

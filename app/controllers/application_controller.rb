@@ -12,7 +12,15 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  before_filter :set_feeds_per_page, :store_location, :set_iphone_format
+  before_filter :set_site_categories, :set_feeds_per_page, :store_location, :set_iphone_format
+  
+  def set_site_categories
+    if logged_in?
+      @site_categories = current_user.categories
+    else
+      @site_categories = Category.all
+    end
+  end
   
   def set_feeds_per_page
     if logged_in? && current_user.feeds_per_page

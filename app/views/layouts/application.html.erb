@@ -20,11 +20,9 @@
   <body>
     
     <div id="top">
-        Font Size: 
-    		<a href="javascript:void(0);" onclick="changeFontSize('resizable_content','-0.1');">A-</a>
-    		<a href="javascript:void(0);" onclick="changeFontSize('resizable_content','0.1');">A+</a>
-    		&nbsp;
       <% if logged_in? %>
+        <%= link_to "Add Feed", new_feed_site_path %>
+        <%= link_to "My Categories", categories_path %>
         <%= link_to "My Profile", edit_account_path %>
         <%= link_to "Logout", logout_path %>
       <% else %>
@@ -39,7 +37,7 @@
   		<div id="header"><!-- Begin header -->
   			<h1><a href="/" title="Back to home">All Tech News</a></h1>
   			<ul>
-  			  <% Category.all.each do |t| %>
+  			  <% @site_categories.each do |t| %>
   			    <li class="<%=highlight(t.id)%>"><%= link_to t.title, t %></li>
   			  <% end %>
   			</ul>
@@ -55,7 +53,7 @@
   				  <span><%= @title %></span>
   				</p>
 
-  				<div class="hentry" id="resizable_content" style="font-size:<%=get_font_size%>em;">
+  				<div class="hentry">
 
   					<div class="entry-meta">
   					  

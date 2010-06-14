@@ -1,0 +1,5 @@
+<ul>
+  <% Category.general_and_own(current_user.id).each do |category| %>
+  	<li><%= check_box_tag "user[category_ids][]", category.id, @user.categories.include?(category) %> <%= category.title %></li>
+  <% end %>
+</ul>
