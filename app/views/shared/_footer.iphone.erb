@@ -1,33 +1,35 @@
 <div class="footer">
   <p>
     <% if logged_in? %>
+      <%= link_to "Add Feed", new_feed_site_path %> - 
+      <%= link_to 'Add Category', new_category_path %> -
       <%= link_to "My Profile", edit_account_path %> - 
       <%= link_to "Logout", logout_path %> -
     <% else %>
       <%= link_to "Login", login_path %> - 
       <%= link_to "Register", register_path %> -
     <% end %>
-    <%= link_to "Desktop", {:desktop => "true"} %> 
+    <%= link_to "Desktop", {:desktop => "true"} %>
   </p>
-	<br />
+
 	<p>
 	  <%= link_to image_tag("/images/top.png"), "#top"%>
 	  <br />
-	  <%= link_to "Top", root_path %>
+	  <%= link_to "Top", "#top" %>
 	</p>
 	<br />
-	<p>
-	  Rendered for you in <strong><%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %></strong> seconds
-	</p>
 	
+	<small>
+    Rendered for you in <strong><%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %></strong> seconds
   <br />
-	Powered by: 
-	<%=link_to "Rails", "http://github.com/rails/rails" %>,
-	<%=link_to "Feedzirra", "http://github.com/pauldix/feedzirra" %>,
-	<%=link_to "nginx", "http://nginx.org/" %>,
-	<%=link_to "gentoo", "http://www.gentoo.org" %>
-	<br />
-	<%=link_to "Source Code at Github", "http://github.com/fred/feedscollect" %>
-	<br />
-	<%= render :partial => "/shared/license" %>
+  	Powered by: 
+  	<%=link_to "Rails", "http://github.com/rails/rails" %>,
+  	<%=link_to "Feedzirra", "http://github.com/pauldix/feedzirra" %>,
+  	<%=link_to "nginx", "http://nginx.org/" %>,
+  	<%=link_to "gentoo", "http://www.gentoo.org" %>
+  	<br />
+  	<%=link_to "Source Code at Github", "http://github.com/fred/feedscollect" %>
+  	<br />
+  	<%= render :partial => "/shared/license" %>
+	</small>
 </div>

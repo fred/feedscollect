@@ -15,23 +15,21 @@
 	<p>
 	  <%= link_to image_tag("/images/top.png"), "#top"%>
 	  <br />
-	  <%= link_to "Top", root_path %>
+	  <%= link_to "Top", "#top" %>
 	</p>
 	<br />
-	<p>
-	  Rendered for you in <strong><%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %></strong> seconds
-	</p>
 	
-	<br />
 	<small>
-	Powered by: 
-	<%=link_to "Rails", "http://github.com/rails/rails" %>,
-	<%=link_to "Feedzirra", "http://github.com/pauldix/feedzirra" %>,
-	<%=link_to "nginx", "http://nginx.org/" %>,
-	<%=link_to "gentoo", "http://www.gentoo.org" %>
-	<br />
-	<%=link_to "Source Code at Github", "http://github.com/fred/feedscollect" %>
-	<br />
-	<%= render :partial => "/shared/license" %>
+    Rendered for you in <strong><%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %></strong> seconds
+    <br />
+  	Powered by: 
+  	<%=link_to "Rails", "http://github.com/rails/rails" %>,
+  	<%=link_to "Feedzirra", "http://github.com/pauldix/feedzirra" %>,
+  	<%=link_to "nginx", "http://nginx.org/" %>,
+  	<%=link_to "gentoo", "http://www.gentoo.org" %>
+  	<br />
+  	<%=link_to "Source Code at Github", "http://github.com/fred/feedscollect" %>
+  	<br />
+  	<%= render :partial => "/shared/license" %>
 	</small>
 </div>
