@@ -1,4 +1,7 @@
 class FeedEntriesController < ApplicationController
+  
+  before_filter :require_user, :only => [:destroy]
+  
   # GET /feed_entries
   # GET /feed_entries.xml
   def index
@@ -20,6 +23,16 @@ class FeedEntriesController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @feed_entry }
     end
+  end
+  
+  def destroy
+    @feed_entry = FeedEntry.find(params[:id])
+    @feed_site = @feed_entry.feed_site
+    if @feed_site.user_id == current_user.id
+      @feed_entry.destroy
+      flash[:notice] = "Successfully destroyed entry."
+    end
+    redirect_to @feed_site
   end
 
 end
