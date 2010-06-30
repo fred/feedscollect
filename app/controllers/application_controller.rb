@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     if logged_in?
       @site_categories = current_user.categories
     else
-      @site_categories = Category.all
+      @site_categories = Category.general
     end
   end
   

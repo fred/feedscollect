@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
   def self.general_and_own(user_id=nil)
     self.general + User.find(user_id).own_categories
   end
-  
+    
   def self.default_category(home_page_category_id=nil)
     if home_page_category_id
       self.find(home_page_category_id)
