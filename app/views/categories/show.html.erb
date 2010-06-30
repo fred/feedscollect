@@ -23,6 +23,9 @@
             <% end %>
           </p>
         <% end %>
+        <% if feed_site.user_id && current_user && current_user.id==feed_site.user_id %>
+          <strong><%= link_to("More...", feed_site) %></strong>
+        <% end %>
       </div>
     </div>
     <% if i%3==1 %>

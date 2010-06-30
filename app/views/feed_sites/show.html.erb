@@ -13,7 +13,7 @@
     <tr <%= "class='unread'" if feed_entry.unread %>>
       <td> <%= link_to h(feed_entry.title), feed_entry %> </td>
       <td> <%= link_to "Source", h(feed_entry.url) %> </td>
-      <td> <%= link_to truncate(h(feed_entry.summary), :omission => "...", :length => 200), feed_entry %> </td>
+      <td> <%= link_to truncate(strip_tags(feed_entry.summary), :omission => "...", :length => 200), feed_entry %> </td>
       <td> <%=h feed_entry.author %> </td>
       <td> <%=h feed_entry.published.to_s(:short) %> </td>
       <td> <%= link_to "Del", feed_entry_path(feed_entry), :confirm => 'Are you sure?', :method => :delete %> </td>

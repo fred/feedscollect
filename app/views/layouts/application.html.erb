@@ -22,6 +22,8 @@
     <div id="top">
       <% if logged_in? %>
         <%= link_to "Add Feed", new_feed_site_path %>
+        <%= link_to "My Feeds", feed_sites_path %>
+        <%= link_to 'Add Category', new_category_path %>
         <%= link_to "My Categories", categories_path %>
         <%= link_to "My Profile", edit_account_path %>
         <%= link_to "Logout", logout_path %>
@@ -52,7 +54,7 @@
   				<p id="page-info">
   				  <span><%= @title %></span>
   				</p>
-
+  				
   				<div class="hentry">
 
   					<div class="entry-meta">
