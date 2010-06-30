@@ -1,4 +1,4 @@
-<% #cache "#{@global_user_id}/categories/#{@category.id}" do 
+<% #cache "#{@feed_site.user_id.to_i}/categories/#{@category.id}" do 
 %>
   <% i = 1 %>
   <% for feed_site in @feed_sites %>
@@ -7,9 +7,9 @@
       <div class="box_title">
         <p>
           <% if feed_site.avatar? %>
-            <%= link_to(image_tag(feed_site.avatar.url(:large)), h(feed_site.site_url.to_s), :title => h(feed_site.title)) %>
+            <%= link_to(image_tag(feed_site.avatar.url(:large)), feed_site, :title => h(feed_site.title)) %>
           <% else %>
-            <%= link_to(h(feed_site.title), h(feed_site.site_url.to_s), :title => h(feed_site.title))%>
+            <%= link_to(h(feed_site.title), feed_site, :title => h(feed_site.title))%>
           <% end %>
         </p>
       </div>
@@ -22,9 +22,6 @@
               <%= link_to(t.title.to_s, h(t.url), :title => t.title.to_s) %>
             <% end %>
           </p>
-        <% end %>
-        <% if feed_site.user_id && current_user && current_user.id==feed_site.user_id %>
-          <strong><%= link_to("More...", feed_site) %></strong>
         <% end %>
       </div>
     </div>

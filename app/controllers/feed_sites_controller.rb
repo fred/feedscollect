@@ -9,7 +9,10 @@ class FeedSitesController < ApplicationController
   end
   
   def show
-    @feed_site = current_user.feed_sites.find(params[:id])
+    @feed_site = FeedSite.find(params[:id])
+    unless (current_user && @feed_site.user_id == current_user.id)
+      redirect_to @feed_site.site_url.to_s
+    end
     @title = @feed_site.title
   end
   
