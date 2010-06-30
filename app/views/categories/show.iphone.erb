@@ -1,4 +1,5 @@
-<% cache "categories/#{@category.id}_mobile" do %>
+<% #cache "#{@global_user_id}/categories/#{@category.id}_mobile" do 
+%>
   <% for feed_site in @feed_sites %>
     <div class="box">
       <div class="box_title">
@@ -25,4 +26,5 @@
     </div>
     <br clear="both"/>
   <% end %>
-<% end %>
+<% #end 
+%>

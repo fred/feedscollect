@@ -12,23 +12,20 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  before_filter :set_site_categories, :set_feeds_per_page, :store_location, :set_iphone_format
-  
-  def set_site_categories
+  before_filter :set_globals, :store_location, :set_iphone_format
+    
+  def set_globals
     if logged_in?
+      @global_user_id = current_user.id
       @site_categories = current_user.categories
+      @feeds_per_page = current_user.feeds_per_page if current_user.feeds_per_page
     else
+      @global_user_id = 0
       @site_categories = Category.general
-    end
-  end
-  
-  def set_feeds_per_page
-    if logged_in? && current_user.feeds_per_page
-      @feeds_per_page = current_user.feeds_per_page
-    else
       @feeds_per_page = FeedEntry.default_per_box
     end
   end
+  
   
   def is_iphone_request?
     request.user_agent.downcase =~ /(mobile\/.+safari)|(fennec)|(iphone)|(ipod)|(blackberry)|(symbian)|(series60)|(android)|(smartphone)|(wap)|(mobile)/

@@ -1,4 +1,4 @@
-<% #cache "categories/#{@category.id}" do 
+<% #cache "#{@global_user_id}/categories/#{@category.id}" do 
 %>
   <% i = 1 %>
   <% for feed_site in @feed_sites %>
@@ -17,7 +17,7 @@
         <% feed_site.feed_entries.per_box.each do |t| %>
           <p> - 
             <% if logged_in? %>
-              <%= link_to(t.title.to_s, t, :title => t.title.to_s) %> 
+              <%= link_to(t.title.to_s, t, :title => strip_tags(t.summary.to_s)) %>
             <% else %>
               <%= link_to(t.title.to_s, h(t.url), :title => t.title.to_s) %>
             <% end %>
