@@ -97,11 +97,11 @@ class FeedSite < ActiveRecord::Base
           fi = FeedEntry.new
           fi.title = t.title
           fi.url = t.url
+          fi.url = fi.url unless (!t.url && fi.url && fi.url.match(/^http|^https/))
           fi.author = t.author
           fi.summary = t.summary if self.user_id
           fi.content = t.content if self.user_id
           fi.published = t.published
-          fi.url = feed.url.to_s+fi.url.to_s unless fi.url.match(/^http:|^https:/)
           fi.save
           self.feed_entries << fi
         end
