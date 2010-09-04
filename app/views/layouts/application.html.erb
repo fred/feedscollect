@@ -16,6 +16,7 @@
     <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js" %>
     <%= yield(:head) %>
     <%= render :partial => "/shared/user_css" %>
+    <%= render :partial => "/shared/flattr_header" %>
   </head>
   <body>
     
@@ -32,6 +33,7 @@
         <%= link_to "Register", register_path %>
       <% end %>
       <%= link_to "Mobile",  {:mobile => "true"} %>
+      <%= render :partial => "/shared/flattr_small_button" %>
     </div>
     
     <div id="wrapper"><!-- Begin wrapper -->

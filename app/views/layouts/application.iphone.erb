@@ -19,6 +19,7 @@
     <%= stylesheet_link_tag 'mobile/fieldset' %>
     <%= stylesheet_link_tag 'mobile/nokia' if request.user_agent.downcase =~ /(nokia)|(symbian)/ %>
     <%= javascript_include_tag "application" %>
+    <%= render :partial => "/shared/flattr_header" %>
     <%= yield(:head) %>
   </head>
   <body>
@@ -31,6 +32,7 @@
   			  <% @site_categories.each do |t| %>
   			    <li class="<%=highlight(t.id)%>"><%= link_to t.title, t %></li>
   			  <% end %>
+  			  <li><%= render :partial => "/shared/flattr_small_button" %></li>
   			</ul>
   		</div>
 
