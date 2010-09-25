@@ -66,7 +66,7 @@ class FeedSite < ActiveRecord::Base
       rescue Timeout::Error
         msg = "...timeout for feed #{t.id}"
       end
-      
+      puts ""
       logger.info msg
       puts msg
     end
@@ -75,6 +75,7 @@ class FeedSite < ActiveRecord::Base
   end
   
   def save_details
+    @entries_count = 0
     feed = nil
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
     # sometimes we get 404 errors on feeds (Fixnum)
@@ -91,11 +92,15 @@ class FeedSite < ActiveRecord::Base
     # will happen rarelly, but helps to avoid dupplicate entries 
     etag = nil
     etag = feed.etag.to_s.gsub("\"","") if feed.etag
+    msg = "Checking etag: #{etag}"
+    logger.info msg 
+    puts msg
     if (etag && (etag != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+60))
       feed.entries.each do |t|
         # allow 10 seconds delay for feed saving, to avoid dupplicates 
         # again, might loose a feed in rare cases,
         if t.last_modified.to_i > (self.last_modified.to_i+10)
+          @entries_count +=1
           fi = FeedEntry.new
           fi.title = t.title
           fi.url = t.url
@@ -105,9 +110,15 @@ class FeedSite < ActiveRecord::Base
           fi.content = t.content if (self.user_id or self.featured)
           fi.published = t.published
           fi.save
+          msg="new: #{fi.id}"
+          logger.info msg
+          puts msg
           self.feed_entries << fi
         end
       end
+      msg = "Added #{@entries_count} new items."
+      logger.info msg
+      puts msg
       self.last_modified = feed.last_modified
       self.etag = etag
     end
