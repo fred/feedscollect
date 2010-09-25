@@ -1,9 +1,9 @@
 class FeedSitesController < ApplicationController
   
-  before_filter :require_user, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :require_user, :only => [:new, :edit, :create, :update, :destroy, :index]
   
   def index
-    own_categories = current_user.own_category_ids
+    own_categories = current_user.category_ids if current_user
     @feed_sites = FeedSite.find(:all, :conditions => ["category_id in (#{own_categories.join(',')})"], :order => "title ASC")
     @title = "Feed Sites list"
   end

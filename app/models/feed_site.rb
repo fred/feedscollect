@@ -109,7 +109,7 @@ class FeedSite < ActiveRecord::Base
         end
       end
       self.last_modified = feed.last_modified
-      self.etag = feed.etag.to_s
+      self.etag = etag
     end
   end
   
