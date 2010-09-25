@@ -87,9 +87,11 @@ class FeedSite < ActiveRecord::Base
     self.title = feed.title.to_s if self.title.to_s.blank?
     self.description = feed.class.to_s if self.description.to_s.blank?
     self.site_url = feed.url.to_s
-    # Skip 5 minutes, might loose a few feeds, 
+    # Skip 5 minutes, might loose a few feeds.
     # will happen rarelly, but helps to avoid dupplicate entries 
-    if (feed.etag && (feed.etag.to_s != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+300))
+    etag = nil
+    etag = feed.etag.to_s.gsub("\"","") if feed.etag
+    if (etag && (etag != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+60))
       feed.entries.each do |t|
         # allow 10 seconds delay for feed saving, to avoid dupplicates 
         # again, might loose a feed in rare cases,
@@ -99,8 +101,8 @@ class FeedSite < ActiveRecord::Base
           fi.url = t.url
           fi.url = fi.url unless (!t.url && fi.url && fi.url.match(/^http|^https/))
           fi.author = t.author
-          fi.summary = t.summary if self.user_id
-          fi.content = t.content if self.user_id
+          fi.summary = t.summary if (self.user_id or self.featured)
+          fi.content = t.content if (self.user_id or self.featured)
           fi.published = t.published
           fi.save
           self.feed_entries << fi

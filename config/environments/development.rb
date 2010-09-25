@@ -1,4 +1,4 @@
-require 'ruby-debug' unless RUBY_VERSION == "1.9.1"
+require 'ruby-debug' unless (RUBY_VERSION == "1.9.1" && RAILS_ENV == "production")
 # Settings specified here will take precedence over those in config/environment.rb
 
 # In the development environment your application's code is reloaded on
