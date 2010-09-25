@@ -116,7 +116,7 @@ class FeedSite < ActiveRecord::Base
           self.feed_entries << fi
         end
       end
-      msg = "Added #{@entries_count} new items to #{feed.title}"
+      msg = "Added #{@entries_count} new items to #{feed.title}."
       logger.info msg
       puts msg
       self.last_modified = feed.last_modified
