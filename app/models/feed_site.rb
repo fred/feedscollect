@@ -80,7 +80,7 @@ class FeedSite < ActiveRecord::Base
     feed = Feedzirra::Feed.fetch_and_parse(self.url.to_s)
     # sometimes we get 404 errors on feeds (Fixnum)
     if (feed.nil? or (feed.is_a? Fixnum) or feed.class.to_s.match("Feedzirra").nil?)
-      msg=" *** Error: #{feed}"
+      msg=" *** Error: feed:#{feed}, class:#{feed.class}"
       puts msg
       logger.info msg
       return false
@@ -91,16 +91,16 @@ class FeedSite < ActiveRecord::Base
     # Skip 5 minutes, might loose a few feeds.
     # will happen rarelly, but helps to avoid dupplicate entries 
     etag = nil
-    etag = feed.etag.to_s.gsub("\"","") if feed.etag
+    etag = feed.etag if feed.etag
     msg = "Checking etag: #{etag}"
     logger.info msg 
     puts msg
     if (etag && (etag != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+60))
       feed.entries.each do |t|
-        # allow 10 seconds delay for feed saving, to avoid dupplicates 
-        # again, might loose a feed in rare cases,
-        if t.last_modified.to_i > (self.last_modified.to_i+10)
-          @entries_count +=1
+        # allow 15 seconds delay for feed saving, to avoid dupplicates 
+        # again, might loose a feed entry in rare cases.
+        last_modified = Time.parse(t.last_modified)
+        if last_modified && (last_modified.to_i > (self.last_modified.to_i+15))
           fi = FeedEntry.new
           fi.title = t.title
           fi.url = t.url
@@ -108,12 +108,13 @@ class FeedSite < ActiveRecord::Base
           fi.author = t.author
           fi.summary = t.summary if (self.user_id or self.featured)
           fi.content = t.content if (self.user_id or self.featured)
-          fi.published = t.published
+          fi.published = last_modified
           fi.save
-          msg="new: #{fi.id}"
+          msg="new: #{fi.title}"
           logger.info msg
           puts msg
           self.feed_entries << fi
+          @entries_count +=1
         end
       end
       msg = "Added #{@entries_count} new items to #{feed.title}."
