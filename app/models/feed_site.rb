@@ -66,9 +66,9 @@ class FeedSite < ActiveRecord::Base
       rescue Timeout::Error
         msg = "...timeout for feed #{t.id}"
       end
-      puts ""
       logger.info msg
       puts msg
+      puts ""
     end
     Category.all.each {|t| t.touch}
     GC.start
@@ -99,7 +99,10 @@ class FeedSite < ActiveRecord::Base
       feed.entries.each do |t|
         # allow 15 seconds delay for feed saving, to avoid dupplicates 
         # again, might loose a feed entry in rare cases.
-        last_modified = Time.parse(t.last_modified)
+        # Some stupid RSS feeds don't put last_modified on the feed entry.
+        last_modified = nil 
+        # if don't have last_modified, im skiping, screw those idiots.
+        last_modified = Time.parse(t.last_modified) if t.last_modified
         if last_modified && (last_modified.to_i > (self.last_modified.to_i+15))
           fi = FeedEntry.new
           fi.title = t.title

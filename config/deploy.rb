@@ -1,4 +1,4 @@
-set :application, "feedscollect"
+set :application, "technews-homepage.com"
 set :repository,  "git@github.com:fred/feedscollect.git"
 set :branch, "master"
 set :domain, "technews-homepage.com"
@@ -8,7 +8,7 @@ set :rails_env, "production"
 set :user, "fred"
 set :use_sudo,  false
 #set :git_enable_submodules, 1
-set :deploy_to, "/home/fred/rails/#{application}"
+set :deploy_to, "/var/www/apps/#{application}"
 set :mongrel_port, "3008"
 
 role :web, domain
