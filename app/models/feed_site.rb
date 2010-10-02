@@ -95,14 +95,29 @@ class FeedSite < ActiveRecord::Base
     msg = "Checking etag: #{etag}"
     logger.info msg 
     puts msg
-    if (etag && (etag != self.etag)) or (feed.last_modified.to_i > (self.last_modified.to_i+60))
-      feed.entries.each do |t|
+    
+    if feed.last_modified && (feed.last_modified.is_a? Time)
+      feed_last_modified = feed.last_modified 
+    elsif feed.last_modified && (feed.last_modified.is_a? String)
+      feed_last_modified = Time.parse(feed.last_modified) 
+    else
+      feed_last_modified = nil
+    end
+    
+    if (etag && (etag != self.etag)) or (feed_last_modified.to_i > (self.last_modified.to_i+60))
+      
+      feed.entries.each do |t|  
+        # Some stupid RSS feeds don't put last_modified on the feed entry.
+        # if don't have last_modified, im skiping, screw those.
+        if t.last_modified && (t.last_modified.is_a? Time)
+          last_modified = t.last_modified 
+        elsif t.last_modified && (t.last_modified.is_a? String)
+          last_modified = Time.parse(t.last_modified) 
+        else
+          last_modified = nil
+        end
         # allow 15 seconds delay for feed saving, to avoid dupplicates 
         # again, might loose a feed entry in rare cases.
-        # Some stupid RSS feeds don't put last_modified on the feed entry.
-        last_modified = nil 
-        # if don't have last_modified, im skiping, screw those idiots.
-        last_modified = Time.parse(t.last_modified) if t.last_modified
         if last_modified && (last_modified.to_i > (self.last_modified.to_i+15))
           fi = FeedEntry.new
           fi.title = t.title
@@ -123,7 +138,7 @@ class FeedSite < ActiveRecord::Base
       msg = "Added #{@entries_count} new items to #{feed.title}."
       logger.info msg
       puts msg
-      self.last_modified = feed.last_modified
+      self.last_modified = feed_last_modified
       self.etag = etag
     end
   end
