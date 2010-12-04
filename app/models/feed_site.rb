@@ -106,7 +106,8 @@ class FeedSite < ActiveRecord::Base
       feed_last_modified = nil
     end
     
-    if (etag && (etag != self.etag)) or (feed_last_modified.to_i > (self.last_modified.to_i+60))
+    @feed_entries_count = self.feed_entries.count
+    if (@feed_entries_count==0) or (etag && (etag != self.etag)) or (feed_last_modified.to_i > (self.last_modified.to_i+60))
       
       feed.entries.each do |t|  
         # Some stupid RSS feeds don't put last_modified on the feed entry.
@@ -120,7 +121,7 @@ class FeedSite < ActiveRecord::Base
         end
         # allow 60 seconds delay for feed saving, to avoid dupplicates 
         # again, might loose a feed entry in rare cases.
-        if last_modified && (last_modified.to_i > (self.last_modified.to_i+60))
+        if (@feed_entries_count==0) or (last_modified && (last_modified.to_i > (self.last_modified.to_i+60)))
           fi = FeedEntry.new
           fi.title = t.title
           fi.url = t.url
@@ -143,6 +144,7 @@ class FeedSite < ActiveRecord::Base
       self.last_modified = feed_last_modified
       self.etag = etag
     end
+    true
   end
   
 end
