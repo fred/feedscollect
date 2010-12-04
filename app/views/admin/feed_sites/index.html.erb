@@ -2,8 +2,6 @@
   <tr>
     <th>Title</th>
     <th>Category</th>
-    <th>Rss</th>
-    <th>Site</th>
     <th>Logo</th>
     <th>Sort</th>
     <th>Last Modified</th>
@@ -14,10 +12,11 @@
   </tr>
   <% for feed_site in @feed_sites %>
     <tr>
-      <td><%= link_to(h(feed_site.title), admin_feed_site_path(feed_site)) %></td>
+      <td> 
+        <%= image_tag("star.png") if feed_site.featured %>
+        <%= link_to(h(feed_site.title), admin_feed_site_path(feed_site)) %>
+      </td>
       <td><%= link_to(feed_site.category_name, admin_category_path(feed_site.category)) if feed_site.category %></td>
-      <td><%= link_to("Rss",  h(feed_site.url)) %></td>
-      <td><%= link_to("Site", h(feed_site.site_url)) %></td>
       <td><%= feed_site.avatar? ? "Yes" : "No" %></td>
       <td><%= feed_site.sort_order %></td>
       <td><%=h feed_site.last_modified.to_s(:short) if feed_site.last_modified %></td>

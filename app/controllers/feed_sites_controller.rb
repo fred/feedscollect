@@ -4,7 +4,9 @@ class FeedSitesController < ApplicationController
   
   def index
     own_categories = current_user.category_ids if current_user
-    @feed_sites = FeedSite.find(:all, :conditions => ["category_id in (#{own_categories.join(',')})"], :order => "title ASC")
+    @feed_sites = FeedSite.find(:all, 
+      :conditions => ["category_id in (#{own_categories.join(',')})"], :order => "category_id,sort_order ASC"
+    )
     @title = "Feed Sites list"
   end
   

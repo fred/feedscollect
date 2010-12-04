@@ -15,13 +15,7 @@
       </div>
       <div class="box_content">
         <% feed_site.feed_entries.per_box.each do |t| %>
-          <p> - 
-            <% if logged_in? %>
-              <%= link_to(t.title.to_s, h(t.url), :title => strip_tags(t.summary.to_s)) %>
-            <% else %>
-              <%= link_to(t.title.to_s, h(t.url), :title => t.title.to_s) %>
-            <% end %>
-          </p>
+          <p> - <%= link_to(t.title.to_s, h(t.url), :title => get_feed_title(t)) %> </p>
         <% end %>
       </div>
     </div>
@@ -32,3 +26,19 @@
   
 <% #end 
 %>
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $('a[title]').qtip({ 
+      style: { 
+        name: 'cream', 
+        tip: {corner: 'topLeft'},
+      },
+      position: { 
+        corner: {
+          target: 'topRight',
+          tooltip: 'bottomLeft'
+        }
+      }
+    })
+	});
+</script>

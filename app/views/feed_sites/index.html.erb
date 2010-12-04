@@ -7,8 +7,7 @@
     <th>Sort</th>
     <th>Last Update</th>
     <th>Entries</th>
-    <th> </th>
-    <th> </th>
+
   </tr>
   <% for feed_site in @feed_sites %>
     <tr>
@@ -19,8 +18,6 @@
       <td><%= feed_site.sort_order %></td>
       <td><%=h feed_site.last_modified.to_s(:short) if feed_site.last_modified %></td>
       <td><%=h feed_site.feed_entries.count %></td>
-      <td><%= link_to "Edit", edit_feed_site_path(feed_site) %></td>
-      <td><%= link_to "Del", feed_site_path(feed_site), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>

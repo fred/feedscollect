@@ -1,6 +1,12 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def get_feed_title(feed)
+    "<b>#{strip_tags(feed.title.to_s)}</b>"+
+    "<br />"+
+    "#{strip_tags(feed.summary.to_s)}"
+  end
+  
   def default_font_size
     "1"
   end
