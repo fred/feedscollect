@@ -1,0 +1,5 @@
+#!/bin/sh
+UNICORN_PID=/var/www/apps/technews-homepage.com/shared/pids/unicorn.pid
+if [ -f UNICORN_PID ]; then 
+  kill `cat ${UNICORN_PID}`; 
+fi

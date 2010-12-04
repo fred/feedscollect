@@ -1,4 +1,4 @@
-require 'ruby-debug'  if (RUBY_VERSION =~ /1.8/)
+# require 'ruby-debug'  if (RUBY_VERSION =~ /1.8/)
 
 # Settings specified here will take precedence over those in config/environment.rb
 

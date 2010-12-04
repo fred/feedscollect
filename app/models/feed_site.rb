@@ -3,7 +3,9 @@ class FeedSite < ActiveRecord::Base
   
   attr_writer :skip_refresh
   
-  has_attached_file :avatar, :styles => { :large => "200x30>", :medium => "180x28>", :small => "160x26>" }
+  has_attached_file :avatar, 
+    :styles => { :large => "200x30>", :medium => "180x28>", :small => "160x26>" },
+    :convert_options => { :thumb => '-quality 96' }
   
   belongs_to :category
   belongs_to :user

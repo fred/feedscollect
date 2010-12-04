@@ -1,0 +1,2 @@
+#!/bin/sh
+cd /var/www/apps/technews-homepage.com/current && sudo -u fred /usr/local/bin/unicorn_rails -c /var/www/apps/technews-homepage.com/current/config/unicorn.rb -E production -D

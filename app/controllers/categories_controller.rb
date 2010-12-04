@@ -28,7 +28,8 @@ class CategoriesController < ApplicationController
     else
       @title = @category.description
     end
-
+    # for benchmarking
+    @feed_sites = FeedSite.all if params[:bench]
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @category }
