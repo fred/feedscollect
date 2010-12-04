@@ -29,7 +29,7 @@ class FeedSite < ActiveRecord::Base
     total = self.feed_entries.count
     if (total>200)
       total = (total-200) 
-      sql = "delete from feed_entries where feed_site_id = #{self.id} order by id ASC limit #{total}"
+      sql = "delete from feed_entries where feed_site_id = #{self.id} order by published ASC limit #{total}"
       ActiveRecord::Base.connection.execute(sql)
     end
   end
