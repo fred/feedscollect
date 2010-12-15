@@ -7,6 +7,8 @@
     <th>Last Modified</th>
     <th>ETAG</th>
     <th>Entries</th>
+    <th>Summary</th>
+    <th>Content</th>
     <th> </th>
     <th> </th>
   </tr>
@@ -22,6 +24,10 @@
       <td><%=h feed_site.last_modified.to_s(:short) if feed_site.last_modified %></td>
       <td><%=h feed_site.etag ? "Yes" : "No" %></td>
       <td><%=h feed_site.feed_entries.count %></td>
+      
+      <td><%= to_file_size feed_site.summary_total_size %></td>
+      <td><%= to_file_size feed_site.content_total_size %></td>
+      
       <td><%= link_to "Edit", edit_admin_feed_site_path(feed_site) %></td>
       <td><%= link_to "Del", admin_feed_site_path(feed_site), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

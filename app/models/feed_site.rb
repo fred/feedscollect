@@ -24,6 +24,22 @@ class FeedSite < ActiveRecord::Base
     {:id => 4, :name => "itunes_rss"}
   ]
   
+  def summary_total_size
+    @bytes = 0
+    self.feed_entries.each do |t|
+      @bytes += t.summary.to_s.size
+    end
+    @bytes
+  end
+  
+  def content_total_size
+    @bytes = 0
+    self.feed_entries.each do |t|
+      @bytes += t.content.to_s.size
+    end
+    @bytes
+  end
+  
   # Clear older feed_entries leaving only the 100 newest
   def clean_older_feeds
     total = self.feed_entries.count

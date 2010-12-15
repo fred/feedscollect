@@ -43,19 +43,26 @@
 <table id="hor-minimalist-b">
   <tr>
     <th>Title</th>
-    <th>Url</th>
-    <th>Author</th>
     <th>Date</th>
+    <th> </th>
     <th> </th>
   </tr>
   <% for feed_entry in @feed_site.feed_entries %>
     <tr>
-      <td><%= link_to h(feed_entry.title), h(feed_entry.url) %></td>
-      <td><%=link_to h(feed_entry.url), h(feed_entry.url) %></td>
-      <td><%=h feed_entry.author %></td>
-      <td><%=h feed_entry.published.to_s(:short) %></td>
+      <td>
+        <%= link_to h(feed_entry.title), h(feed_entry.url) %> - 
+        <%= to_file_size (feed_entry.summary.to_s.size) %> - 
+        <%= feed_entry.published.to_s(:short) %>
+      </td>
       <td><%= link_to "Del", admin_feed_entry_path(feed_entry), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
+    <% if feed_entry.summary %>
+    <tr>
+      <td><%= feed_entry.summary %></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% end %>
   <% end %>
 </table>
 
