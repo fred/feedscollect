@@ -9,7 +9,7 @@ set :user, "fred"
 set :use_sudo,  false
 #set :git_enable_submodules, 1
 set :deploy_to, "/var/www/apps/#{application}"
-set :mongrel_port, "3008"
+set :mongrel_port, "3009"
 
 role :web, domain
 role :app, domain
