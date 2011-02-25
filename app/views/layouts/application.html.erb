@@ -11,26 +11,27 @@
     <%= stylesheet_link_tag 'stylesheet' %>
     <%= stylesheet_link_tag 'table' %>
     <%= stylesheet_link_tag 'fieldset' %>
-    
+
     <!-- jQuery JS and CSS -->
-    <%= javascript_include_tag "jquery-1.4.2.min.js" %>
-    <%= javascript_include_tag "jquery-ui-1.8.6.custom.min.js" %>
+    <%#= javascript_include_tag "jquery-1.4.2.min.js" %>
+    <%= javascript_include_tag "jquery.min.js" %>
+    <%= javascript_include_tag "jquery-ui.min.js" %>
     <%= javascript_include_tag "jquery.rails.js" %>
     <%= javascript_include_tag "jquery.scrollTo-1.4.2-min.js" %>
-    <%= stylesheet_link_tag "jquery-ui-1.8.6.custom.css" %>
+    <%= stylesheet_link_tag "jquery-ui-1.8.10.custom.css" %>
 
     <!-- jQuery qTip -->
-    <%= javascript_include_tag "jquery.qtip.pack.js" %>
+    <%= javascript_include_tag "jquery.qtip.js" %>
     <%= stylesheet_link_tag "jquery.qtip.css" %>
-    
+
     <%= javascript_include_tag "application" %>
-    
+
     <%= yield(:head) %>
     <%= render :partial => "/shared/user_css" %>
     <%= render :partial => "/shared/flattr_header" %>
   </head>
   <body>
-    
+
     <div id="top">
       <% if logged_in? %>
         <%= link_to "Add Feed", new_feed_site_path %>
