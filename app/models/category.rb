@@ -21,8 +21,7 @@ class Category < ActiveRecord::Base
   
   
   def clear_cache
-    ActionController::Base.new.expire_fragment("categories/#{self.id}")
-    ActionController::Base.new.expire_fragment("categories/#{self.id}_mobile")
+    system("rm -rf #{Rails.root}/tmp/cache/*")
   end  
 
 end

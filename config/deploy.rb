@@ -1,7 +1,7 @@
 set :application, "technews-homepage.com"
 set :repository,  "git@github.com:fred/feedscollect.git"
 set :branch, "master"
-set :domain, "technews-homepage.com"
+set :domain, "pm.frederico-araujo.com"
 set :scm, :git
 set :deploy_via, :remote_cache
 set :rails_env, "production"
@@ -19,6 +19,13 @@ role :scm, domain
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 ssh_options[:paranoid] = false
+
+# RVM 
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                    # Load RVM's capistrano plugin.
+set :rvm_ruby_string, 'ruby-1.9.2@rails2'   # Or whatever env you want it to run in.
+set :rvm_type, :user
+
 
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need

@@ -43,8 +43,8 @@ class FeedSite < ActiveRecord::Base
   # Clear older feed_entries leaving only the 100 newest
   def clean_older_feeds
     total = self.feed_entries.count
-    if (total>200)
-      total = (total-200) 
+    if (total>40)
+      total = (total-40) 
       sql = "delete from feed_entries where feed_site_id = #{self.id} order by published ASC limit #{total}"
       ActiveRecord::Base.connection.execute(sql)
     end
@@ -160,6 +160,7 @@ class FeedSite < ActiveRecord::Base
       self.last_modified = feed_last_modified
       self.etag = etag
     end
+    system("rm -rf #{Rails.root}/tmp/cache/*")
     true
   end
   

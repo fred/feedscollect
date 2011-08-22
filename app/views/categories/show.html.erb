@@ -1,5 +1,5 @@
-<% #cache "#{@feed_site.user_id.to_i}/categories/#{@category.id}" do 
-%>
+<% cache "desktop/category_#{@category.id}" do %>
+
   <% i = 1 %>
   <% for feed_site in @feed_sites %>
     <% i+=1 %>
@@ -24,8 +24,8 @@
     <% end %>
   <% end %>
   
-<% #end 
-%>
+<% end %>
+
 <script type='text/javascript'>
   $(document).ready(function(){
     $('a[title]').qtip({ 
