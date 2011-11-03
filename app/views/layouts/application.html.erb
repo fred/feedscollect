@@ -29,7 +29,6 @@
         <%= link_to('Login', new_user_session_path) %>
         <%= link_to('Register', new_user_registration_path) %>
       <% end %>
-      <%= link_to "Mobile",  {:mobile => "true"} %>
       <%= render :partial => "/shared/flattr_small_button" %>
     </div>
     
@@ -49,16 +48,16 @@
   		<div id="outer-space"><!-- Begin outer-space -->
 
   			<div id="hfeed">
-
-  				<p id="page-info">
-  				  <span><%= @title %></span>
-  				</p>
   				
   				<div class="hentry">
 
   					<div class="entry-meta">
-              <!-- <p class="notice"><%#= notice %></p>
-              <p class="alert"><%#= alert %></p> -->
+  					  <% if notice %>
+                <p class="notice"><%= notice %></p>
+              <% end %>
+              <% if alert %>
+                <p class="alert"><%= alert %></p>
+              <% end %>
               <%= yield %>
    					</div>
 

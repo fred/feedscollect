@@ -2,17 +2,14 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  
-  helper :all # include all helpers, all the time
-  
-  # helper_method :current_user_session, :current_user
-  
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  helper :all
+  protect_from_forgery
 
-  before_filter :set_globals, :start_time
+  before_filter :set_globals
     
   def set_globals
-    if logged_in?
+    @start_time = Time.now.usec
+    if current_user
       @global_user_id = current_user.id
       @site_categories = current_user.categories
       @feeds_per_page = current_user.feeds_per_page if current_user.feeds_per_page
@@ -22,49 +19,7 @@ class ApplicationController < ActionController::Base
       @feeds_per_page = FeedEntry.default_per_box
     end
   end
-  
-  def is_iphone_request?
-    request.user_agent.downcase =~ /(mobile\/.+safari)|(fennec)|(iphone)|(ipod)|(blackberry)|(symbian)|(series60)|(android)|(smartphone)|(wap)|(mobile)/
-  end
-
-  def set_iphone_format    
-    if params[:desktop]
-      set_desktop
-    elsif params[:mobile]
-      set_mobile
-    else
-      default_mode
-    end
-  end
-  
-  def set_desktop
-    session[:mobile] = nil
-    session[:desktop] = true
-    request.format = :html
-    logger.debug " *** Setting to Desktop Mode *** "
-  end
-  
-  def set_mobile
-    session[:desktop] = nil
-    session[:mobile] = true
-    request.format = :iphone
-    logger.debug " *** Setting to iPhone Mode *** "
-  end
-  
-  def default_mode
-    if is_iphone_request? or session[:mobile]
-      logger.debug " ** Default iPhone"
-      set_mobile
-    else
-      logger.debug " ** Default Desktop"
-      set_desktop
-    end
-  end
-  
-  def start_time
-    @start_time = Time.now.usec
-  end
-  
+    
   def logged_in?
     current_user
   end
