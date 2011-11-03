@@ -1,33 +1,35 @@
-<div class="row">
+<%# cache @category.id do %>
+  <div class="row">
   
-  <% for feed_site in @feed_sites %>
-    <div class="box fourcol">
-      <div class="box_title">
-        <p>
-          <% if feed_site.avatar? %>
-            <%= link_to(image_tag(feed_site.avatar.url(:large)), feed_site, :title => h(feed_site.title)) %>
-          <% else %>
-            <%= link_to(h(feed_site.title), feed_site, :title => h(feed_site.title))%>
+    <% for feed_site in @feed_sites %>
+      <div class="box fourcol">
+        <div class="box_title">
+          <p>
+            <% if feed_site.avatar? %>
+              <%= link_to(image_tag(feed_site.avatar.url(:large)), feed_site, :title => h(feed_site.title)) %>
+            <% else %>
+              <%= link_to(h(feed_site.title), feed_site, :title => h(feed_site.title))%>
+            <% end %>
+          </p>
+        </div>
+        <div class="box_content">
+          <% feed_site.feed_entries.per_box.each do |t| %>
+            <p> - <%= link_to(t.title.to_s, h(t.url), :title => get_feed_title(t)) %> </p>
           <% end %>
-        </p>
+        </div>
       </div>
-      <div class="box_content">
-        <% feed_site.feed_entries.per_box.each do |t| %>
-          <p> - <%= link_to(t.title.to_s, h(t.url), :title => get_feed_title(t)) %> </p>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
   
-</div>
+  </div>
 
-<script type='text/javascript'>
-  $(document).ready(function(){
-    $('a[title]').qtip({ 
-      position: {
-        my: 'top center',  // Position my top left...
-        at: 'bottom center' // at the bottom right of...
-      }
-    })    
-	});
-</script>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $('a[title]').qtip({ 
+        position: {
+          my: 'top center',  // Position my top left...
+          at: 'bottom center' // at the bottom right of...
+        }
+      })    
+  	});
+  </script>
+<%# end %>

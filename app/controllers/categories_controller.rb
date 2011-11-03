@@ -28,6 +28,7 @@ class CategoriesController < ApplicationController
     else
       @title = @category.description
     end
+    headers['Cache-Control'] = 'public, max-age=600'
     # for benchmarking
     # @feed_sites = FeedSite.all if params[:bench]
     respond_to do |format|
