@@ -46,9 +46,10 @@ class FeedSite < ActiveRecord::Base
   def clean_older_feeds
     total = self.feed_entries.count
     if (total>30)
-      total = (total-30) 
-      sql = "delete from feed_entries where feed_site_id = #{self.id} order by published ASC limit #{total}"
-      ActiveRecord::Base.connection.execute(sql)
+      total = (total-30)
+      FeedEntry.where(:feed_site_id => self.id).order("id ASC").limit(total).destroy_all
+      # sql = "delete from feed_entries where feed_site_id = #{self.id} order by published ASC limit #{total}"
+      # ActiveRecord::Base.connection.execute(sql)
     end
   end
   
