@@ -2,28 +2,14 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="keywords" content="technews, tech, news, homepage, Linux, Apple, iPhone, Android, OpenSource, Ruby, technews" />
-    <meta name="description" content="The Homepage for the Tech Savies. All Tech News for Android, Apple, Linux, iPhone, and Science and Technology" />
+    <!-- <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> -->
+    <meta name="keywords" content="technews, tech, news, homepage, Linux, Apple, iPhone, Android, OpenSource, Ruby" />
+    <meta name="description" content="The Homepage for the Tech Savies. All Tech News for Android, Apple, Linux, iPhone." />
     <meta name="author" content="The Tech News homepage" />
     <title><%= @title %></title>
-    <%= stylesheet_link_tag 'application' %>
-    <%= stylesheet_link_tag 'stylesheet' %>
-    <%= stylesheet_link_tag 'table' %>
-    <%= stylesheet_link_tag 'fieldset' %>
-
-    <!-- jQuery JS and CSS -->
-    <%= javascript_include_tag "jquery.min.js" %>
-    <%= javascript_include_tag "jquery-ui.min.js" %>
-    <%= javascript_include_tag "rails.js" %>
-    <%= javascript_include_tag "jquery.scrollTo-1.4.2-min.js" %>
-    <%= stylesheet_link_tag "jquery-ui-1.8.10.custom.css" %>
-
-    <!-- jQuery qTip -->
-    <%= javascript_include_tag "jquery.qtip.js" %>
-    <%= stylesheet_link_tag "jquery.qtip.css" %>
-
+    <%= csrf_meta_tags %>
     <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag 'application' %>
 
     <%= yield(:head) %>
     <%= render :partial => "/shared/user_css" %>
@@ -37,11 +23,11 @@
         <%= link_to "My Feeds", feed_sites_path %>
         <%= link_to 'Add Category', new_category_path %>
         <%= link_to "My Categories", categories_path %>
-        <%= link_to "My Profile", edit_account_path %>
-        <%= link_to "Logout", logout_path %>
+        <%= link_to('Edit Profile', edit_user_registration_path) %>
+        <%= link_to('Logout', destroy_user_session_path) %>
       <% else %>
-        <%= link_to "Login", login_path %>
-        <%= link_to "Register", register_path %>
+        <%= link_to('Login', new_user_session_path) %>
+        <%= link_to('Register', new_user_registration_path) %>
       <% end %>
       <%= link_to "Mobile",  {:mobile => "true"} %>
       <%= render :partial => "/shared/flattr_small_button" %>
@@ -71,13 +57,9 @@
   				<div class="hentry">
 
   					<div class="entry-meta">
-  					  
-  					  <%- flash.each do |name, msg| -%>
-                <%= content_tag :div, msg, :id => "flash_#{name}" %>
-              <%- end -%>
-            	
+              <!-- <p class="notice"><%#= notice %></p>
+              <p class="alert"><%#= alert %></p> -->
               <%= yield %>
-              
    					</div>
 
   				</div>
@@ -99,7 +81,7 @@
 
   	</div><!-- End wrapper -->
   	
-  	<% if RAILS_ENV == "production" && !authorized? %>
+  	<% if Rails.env == "production" %>
   	  <%= render :partial => "/shared/ga" %>
   	<% end %>
   	

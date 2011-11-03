@@ -5,14 +5,11 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   
-  helper_method :current_user_session, :current_user
+  # helper_method :current_user_session, :current_user
   
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
-  
-  before_filter :set_globals, :store_location, :set_iphone_format
+  before_filter :set_globals, :start_time
     
   def set_globals
     if logged_in?
@@ -64,16 +61,16 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def initialize
+  def start_time
     @start_time = Time.now.usec
   end
   
   def logged_in?
-    !current_user.nil?
+    current_user
   end
   
   def authorized?
-    logged_in? && current_user.admin?
+    logged_in? # && current_user.admin?
   end
   
   def authorized_only
@@ -121,7 +118,7 @@ class ApplicationController < ActionController::Base
       logger.debug "* Lang from headers : #{extract_locale_from_accept_language_header}"
       logger.debug "* session[:language] was: '#{session[:language]}'"
       session[:language] = params[:language]
-    elsif RAILS_ENV == "test"
+    elsif Rails.env == "test"
       session[:language] = "en"
     else
       session[:language] = get_locale_from_session
@@ -148,15 +145,15 @@ class ApplicationController < ActionController::Base
   
   
   private
-    def current_user_session
-      return @current_user_session if defined?(@current_user_session)
-      @current_user_session = UserSession.find
-    end
-    
-    def current_user
-      return @current_user if defined?(@current_user)
-      @current_user = current_user_session && current_user_session.record
-    end
+    # def current_user_session
+    #   return @current_user_session if defined?(@current_user_session)
+    #   @current_user_session = UserSession.find
+    # end
+    # 
+    # def current_user
+    #   return @current_user if defined?(@current_user)
+    #   @current_user = current_user_session && current_user_session.record
+    # end
     
     def require_user
       unless current_user
@@ -180,7 +177,7 @@ class ApplicationController < ActionController::Base
       if params[:return_to]
         session[:return_to] = params[:return_to]
       else
-        session[:return_to] = request.request_uri
+        session[:return_to] = request.url
       end
     end
     

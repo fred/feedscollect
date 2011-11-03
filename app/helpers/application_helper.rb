@@ -1,4 +1,3 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
   def get_feed_title(feed)
@@ -53,8 +52,10 @@ module ApplicationHelper
   
   
   def highlight(id)
-    if params[:id].to_s==id.to_s
+    if id.to_s == params[:id].to_s
       return "highlight"
+    else
+      return ""
     end
   end
   
@@ -67,13 +68,13 @@ module ApplicationHelper
   end
   
   def authorized?
-    logged_in? && current_user.admin?
+    logged_in? # && current_user.admin?
   end
 
 
   def boolean_to_image_lock(bol)
     if bol && (bol == true)
-      return image_tag("/images/lock22.png", :class => "align-center")
+      return image_tag("lock22.png", :class => "align-center")
     else
       return nil
     end
@@ -81,18 +82,18 @@ module ApplicationHelper
   
   def boolean_to_image_small(bol)
     if bol
-      return image_tag("/images/yes_small.png", :class => "align-center")
+      return image_tag("yes_small.png", :class => "align-center")
     else
-      return image_tag("/images/no_small.png", :class => "align-center")
+      return image_tag("no_small.png", :class => "align-center")
     end
   end
   
   
   def boolean_to_image_big(bol)
     if bol
-      return image_tag("/images/yes.png", :class => "align-center")
+      return image_tag("yes.png", :class => "align-center")
     else
-      return image_tag("/images/no.png", :class => "align-center")
+      return image_tag("no.png", :class => "align-center")
     end
   end
   

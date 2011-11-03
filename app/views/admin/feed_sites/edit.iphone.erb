@@ -1,8 +1,0 @@
-<% form_for @feed_site, :url => {:action => "update" }, :html => { :multipart => true } do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-<% end %>
-
-<p>
-  <%= link_to "Show", admin_feed_site_path(@feed_site) %> |
-  <%= link_to "View All", admin_feed_sites_url %>
-</p>

@@ -1,28 +1,26 @@
-<% cache "mobile/category_#{@category.id}" do %>
-  <% for feed_site in @feed_sites %>
-    <div class="box">
-      <div class="box_title">
-        <p>
-          <% if feed_site.avatar? %>
-            <%= link_to(image_tag(feed_site.avatar.url(:small)), h(feed_site.site_url.to_s), :title => h(feed_site.title)) %>
-          <% else %>
-            <%= link_to(h(feed_site.title), h(feed_site.site_url.to_s), :title => h(feed_site.title))%>
-          <% end %>
-        </p>
-      </div>
-      <div class="box_content">
-        <% feed_site.feed_entries.per_box.each do |t| %>
-          <p>
-           - <%= link_to((t.title.to_s), 
-                h(t.url), 
-                :title => t.title.to_s,
-                :class => "overflow_text"
-                )
-            %>
-          </p>
+<% for feed_site in @feed_sites %>
+  <div class="box">
+    <div class="box_title">
+      <p>
+        <% if feed_site.avatar? %>
+          <%= link_to(image_tag(feed_site.avatar.url(:small)), h(feed_site.site_url.to_s), :title => h(feed_site.title)) %>
+        <% else %>
+          <%= link_to(h(feed_site.title), h(feed_site.site_url.to_s), :title => h(feed_site.title))%>
         <% end %>
-      </div>
+      </p>
     </div>
-    <br clear="both"/>
-  <% end %>
+    <div class="box_content">
+      <% feed_site.feed_entries.per_box.each do |t| %>
+        <p>
+         - <%= link_to((t.title.to_s), 
+              h(t.url), 
+              :title => t.title.to_s,
+              :class => "overflow_text"
+              )
+          %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+  <br clear="both"/>
 <% end %>

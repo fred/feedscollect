@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
   
   belongs_to :owner, :class_name => "User"
   
-  named_scope :general, :conditions => {:owner_id => nil}
+  scope :general, :conditions => {:owner_id => nil}
   
   def self.general_and_own(user_id=nil)
     self.general + User.find(user_id).own_categories

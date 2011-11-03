@@ -5,7 +5,9 @@ class FeedSite < ActiveRecord::Base
   
   has_attached_file :avatar, 
     :styles => { :large => "200x30>", :medium => "180x28>", :small => "160x26>" },
-    :convert_options => { :thumb => '-quality 96' }
+    :convert_options => { :thumb => '-quality 92' },
+    :storage => :s3,
+    :s3_credentials => "#{Rails.root}/config/s3.yml"
   
   belongs_to :category
   belongs_to :user
@@ -43,8 +45,8 @@ class FeedSite < ActiveRecord::Base
   # Clear older feed_entries leaving only the 100 newest
   def clean_older_feeds
     total = self.feed_entries.count
-    if (total>40)
-      total = (total-40) 
+    if (total>30)
+      total = (total-30) 
       sql = "delete from feed_entries where feed_site_id = #{self.id} order by published ASC limit #{total}"
       ActiveRecord::Base.connection.execute(sql)
     end
@@ -125,7 +127,7 @@ class FeedSite < ActiveRecord::Base
     @feed_entries_count = self.feed_entries.count
     if (@feed_entries_count==0) or (etag && (etag != self.etag)) or (feed_last_modified.to_i > (self.last_modified.to_i+60))
       
-      feed.entries.each do |t|  
+      feed.entries[0..30].each do |t|  
         # Some stupid RSS feeds don't put last_modified on the feed entry.
         # if don't have last_modified, im skiping, screw those.
         if t.last_modified && (t.last_modified.is_a? Time)
@@ -144,7 +146,8 @@ class FeedSite < ActiveRecord::Base
           fi.url = fi.url unless (!t.url && fi.url && fi.url.match(/^http|^https/))
           fi.author = t.author
           fi.summary = t.summary 
-          fi.content = t.content if (self.featured)
+          # fi.summary = t.content if fi.summary.to_s.empty?
+          # fi.content = t.content if (self.featured)
           fi.published = last_modified
           fi.save
           msg="new: #{fi.title}"

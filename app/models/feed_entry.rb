@@ -3,10 +3,10 @@ class FeedEntry < ActiveRecord::Base
   belongs_to :feed_site
   
   def self.default_per_box
-    15
+    16
   end
   
-  named_scope :per_box, :limit => default_per_box
+  scope :per_box, :limit => default_per_box
   
   def set_read
     if self.unread?

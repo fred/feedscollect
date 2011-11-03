@@ -1,25 +1,50 @@
-source :gemcutter
-gem "rails", "2.3.11"
+source 'http://rubygems.org'
 
-gem "mysql", "2.8.1"
-gem "authlogic", "2.1.6"
-gem "will_paginate", "2.3.15"
-gem "feedzirra", "0.0.24"
-gem "paperclip", "2.3.11"
-gem "bcrypt-ruby", :require => "bcrypt"
+gem 'rails', '3.1.1'
 
+gem 'mysql2', :group => :test
+gem 'mysql2', :group => :development
 
-# bundler requires these gems in all environments
-# gem "nokogiri", "1.4.2"
-# gem "geokit"
-
-group :development do
-  # bundler requires these gems in development
-  # gem "rails-footnotes"
+group :production do
+  gem 'pg'
 end
 
+# Autthentication
+gem "cancan"
+gem "devise"
+
+### File Uploading
+gem "aws-s3", :require => "aws/s3"
+gem 'paperclip'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.1.4'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier', '>= 1.0.3'
+end
+
+# Views
+gem "will_paginate"
+gem 'jquery-rails'
+
+# Data parsing
+gem "feedzirra"
+
+# To use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Use unicorn as the web server
+# gem 'unicorn'
+
+# Deploy with Capistrano
+# gem 'capistrano'
+
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
+
 group :test do
-  # bundler requires these gems while running tests
-  # gem "rspec"
-  # gem "faker"
+  # Pretty printed test output
+  gem 'turn', :require => false
 end

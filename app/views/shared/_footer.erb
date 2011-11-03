@@ -5,17 +5,17 @@
       <%= link_to "My Feeds", feed_sites_path %> - 
       <%= link_to 'Add Category', new_category_path %> - 
       <%= link_to "My Categories", categories_path %> - 
-      <%= link_to "My Profile", edit_account_path %> - 
-      <%= link_to "Logout", logout_path %> -
+      <%= link_to('Edit Profile', edit_user_registration_path) %> - 
+      <%= link_to('Logout', destroy_user_session_path) %> -
     <% else %>
-      <%= link_to "Login", login_path %> - 
-      <%= link_to "Register", register_path %> -
+      <%= link_to('Login', new_user_session_path) %> - 
+      <%= link_to('Register', new_user_registration_path) %> -
     <% end %>
     <%= link_to "Mobile",  {:mobile => "true"} %>
   </p>
 	<br />
 	<p>
-	  <%= link_to image_tag("/images/top.png"), "#top", :class=> "scroll_top" %>
+	  <%= link_to image_tag("top.png"), "#top", :class=> "scroll_top" %>
 	  <br />
 	  <%= link_to "Top of Page", "#top", :class=> "scroll_top" %>
 	</p>
