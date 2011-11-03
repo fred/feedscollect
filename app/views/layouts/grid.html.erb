@@ -12,21 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
     <meta name="HandheldFriendly" content="true"/>
     
+  	<!-- The 1140px Grid - http://cssgrid.net/ -->
+  	<%= stylesheet_link_tag "grid.css" %>
+  	  	
   	<!-- 1140px Grid styles for IE -->
   	<!--[if lte IE 9]><%= stylesheet_link_tag "ie.css" %><![endif]-->
-
-  	<!-- The 1140px Grid - http://cssgrid.net/ -->
-  	<%= stylesheet_link_tag "1140.css" %>
-
-  	<%= stylesheet_link_tag '01_reset.css' %>
-  	<%= stylesheet_link_tag '03_stylesheet.css' %>
-  	<%= stylesheet_link_tag '05_table.css' %>
-  	<%= stylesheet_link_tag '07_fieldset.css' %>
-  	<%= stylesheet_link_tag '11_jquery.qtip.css' %>
   	
-  	<!-- Your styles -->
-  	<%= stylesheet_link_tag '13_mobile_styles.css' %>
-  	
+  	<%= stylesheet_link_tag "application.css" %>
     <%= javascript_include_tag "application" %>
 
     <%= yield(:head) %>

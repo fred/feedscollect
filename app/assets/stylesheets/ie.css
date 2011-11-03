@@ -1,43 +1,7 @@
-.onecol {
-width: 4.7%;
-}
-
-.twocol {
-width: 13.2%;
-}
-
-.threecol {
-width: 22.05%;
-}
-
-.fourcol {
-width: 30.6%;
-}
-
-.fivecol {
-width: 39%;
-}
-
-.sixcol {
-width: 48%;
-}
-
-.sevencol {
-width: 56.75%;
-}
-
-.eightcol {
-width: 61.6%;
-}
-
-.ninecol {
-width: 74.05%;
-}
-
-.tencol {
-width: 82%;
-}
-
-.elevencol {
-width: 91.35%;
-}
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree ./ie
+*/
