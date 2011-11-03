@@ -47,5 +47,6 @@ module Technews
     
     # for deploying Rails 3.1 on Heroku
     config.assets.initialize_on_precompile = false
+    config.assets.precompile += %w( ie.css )
   end
 end
