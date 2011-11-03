@@ -1,7 +1,7 @@
-  <% i = 1 %>
+<div class="row">
+  
   <% for feed_site in @feed_sites %>
-    <% i+=1 %>
-    <div class="box">
+    <div class="box fourcol">
       <div class="box_title">
         <p>
           <% if feed_site.avatar? %>
@@ -17,10 +17,9 @@
         <% end %>
       </div>
     </div>
-    <% if i%3==1 %>
-      <br clear="both"/>
-    <% end %>
   <% end %>
+  
+</div>
 
 <script type='text/javascript'>
   $(document).ready(function(){

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="keywords" content="technews, tech, news, homepage, Linux, Apple, iPhone, Android, OpenSource, Ruby" />
+    <meta name="description" content="The Homepage for the Tech Savies. All Tech News for Android, Apple, Linux, iPhone." />
+    <meta name="author" content="The Tech News homepage" />
+    <title><%= @title %></title>
+    <%= csrf_meta_tags %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="HandheldFriendly" content="true"/>
+    
+  	<!-- 1140px Grid styles for IE -->
+  	<!--[if lte IE 9]><%= stylesheet_link_tag "ie.css" %><![endif]-->
+
+  	<!-- The 1140px Grid - http://cssgrid.net/ -->
+  	<%= stylesheet_link_tag "1140.css" %>
+
+  	<%= stylesheet_link_tag '01_reset.css' %>
+  	<%= stylesheet_link_tag '03_stylesheet.css' %>
+  	<%= stylesheet_link_tag '05_table.css' %>
+  	<%= stylesheet_link_tag '07_fieldset.css' %>
+  	<%= stylesheet_link_tag '11_jquery.qtip.css' %>
+  	
+  	<!-- Your styles -->
+  	<%= stylesheet_link_tag '13_mobile_styles.css' %>
+  	
+    <%= javascript_include_tag "application" %>
+
+    <%= yield(:head) %>
+    <%= render :partial => "/shared/user_css" %>
+    <%= render :partial => "/shared/flattr_header" %>
+    
+    
+    <!--Delete embedded styles, just for example.-->
+  	<style type="text/css">
+    	.black p {
+      	color: #fff;
+      	line-height: 100px;
+      	background: #000;
+      	text-align: center;
+      	margin: 20px 0 0 0;
+    	}
+  	</style>
+  </head>
+  <body>
+
+    <div id="top">
+      <% if logged_in? %>
+        <%= link_to "Add Feed", new_feed_site_path %>
+        <%= link_to "My Feeds", feed_sites_path %>
+        <%= link_to 'Add Category', new_category_path %>
+        <%= link_to "My Categories", categories_path %>
+        <%= link_to('Edit Profile', edit_user_registration_path) %>
+        <%= link_to('Logout', destroy_user_session_path) %>
+      <% else %>
+        <%= link_to('Login', new_user_session_path) %>
+        <%= link_to('Register', new_user_registration_path) %>
+      <% end %>
+      <%= render :partial => "/shared/flattr_small_button" %>
+    </div>
+    
+    <div id="wrapper"><!-- Begin wrapper -->
+
+  		<div id="header"><!-- Begin header -->
+  			<h1><a href="/" title="Back to home">All Tech News</a></h1>
+  			<ul>
+  			  <% @site_categories.each do |t| %>
+  			    <li class="<%=highlight(t.id)%>"><%= link_to t.title, t %></li>
+  			  <% end %>
+  			</ul>
+  		</div>
+
+  		<hr />
+
+  		<div id="outer-space"><!-- Begin outer-space -->
+
+  			<div id="hfeed">
+  				
+  				<div class="hentry">
+
+  					<div class="entry-meta">
+  					  <% if notice %>
+                <p class="notice"><%= notice %></p>
+              <% end %>
+              <% if alert %>
+                <p class="alert"><%= alert %></p>
+              <% end %>
+              <div class="container">
+                <%= yield %>
+              </div>
+              <div class="clear"></div>              
+   					</div>
+  				</div>
+
+  				
+  			</div>
+
+  			<hr />
+
+  			<div class="clear"></div>
+
+  		</div><!-- End outer-space -->
+  		
+  		<div class="clear"></div>
+
+  		<hr />
+
+      <%= render :partial => "/shared/footer" %>
+
+  	</div><!-- End wrapper -->
+  	
+  	<% if Rails.env == "production" %>
+  	  <%= render :partial => "/shared/ga" %>
+  	<% end %>
+  	
+  	
+  </body>
+</html>

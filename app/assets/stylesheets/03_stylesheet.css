@@ -323,9 +323,9 @@ li.highlight a {
 
 .box {
   text-align:left;
-  width: 32%;
-  float: left;
-  height: auto;
+  /*width: auto;*/
+  /*float: left;*/
+  height: 345px;
   border: 1px solid #bbb;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -333,11 +333,10 @@ li.highlight a {
 	-moz-box-shadow: 1px 1px 4px #999;
   -webkit-box-shadow: 1px 1px 4px #999;
   box-shadow: 1px 1px 4px #999;
-  margin: 0.5%;
-  display: inline;
-  clear: none;
+  margin: 8px;
+  /*display: inline;*/
+  /*clear: none;*/
   background-color: #fff;
-  min-height: 312px;
 }
 .box_title {
   text-align:left;

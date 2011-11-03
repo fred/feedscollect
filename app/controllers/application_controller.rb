@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
 
+  layout "grid"
+  
   before_filter :set_globals
     
   def set_globals
@@ -15,7 +17,7 @@ class ApplicationController < ActionController::Base
       @feeds_per_page = current_user.feeds_per_page if current_user.feeds_per_page
     else
       @global_user_id = 0
-      @site_categories = Category.general
+      @site_categories = Category.all
       @feeds_per_page = FeedEntry.default_per_box
     end
   end

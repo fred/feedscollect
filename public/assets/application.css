@@ -356,9 +356,9 @@ li.highlight a {
 
 .box {
   text-align:left;
-  width: 32%;
-  float: left;
-  height: auto;
+  /*width: auto;*/
+  /*float: left;*/
+  height: 345px;
   border: 1px solid #bbb;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -366,11 +366,10 @@ li.highlight a {
 	-moz-box-shadow: 1px 1px 4px #999;
   -webkit-box-shadow: 1px 1px 4px #999;
   box-shadow: 1px 1px 4px #999;
-  margin: 0.5%;
-  display: inline;
-  clear: none;
+  margin: 8px;
+  /*display: inline;*/
+  /*clear: none;*/
   background-color: #fff;
-  min-height: 312px;
 }
 .box_title {
   text-align:left;
@@ -1450,6 +1449,139 @@ input.small {
 	padding: 2px;
 }
 
+/* CSS Resets */
+
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,cite,code,del,dfn,em,img,ins,q,small,strong,sub,sup,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;margin:0;padding:0}article,aside,figure,figure img,figcaption,hgroup,footer,header,nav,section,video,object{display:block}a img{border:0}figure{position:relative}figure img{width:100%}
+
+
+/* ==================================================================================================================== */
+/* ! The 1140px Grid V2 by Andy Taylor \ http://cssgrid.net \ http://www.twitter.com/andytlr \ http://www.andytlr.com   */
+/* ==================================================================================================================== */
+
+.container {
+  /*padding-left: 20px;
+  padding-right: 20px;*/
+}
+
+.row {
+  width: 100%;
+  max-width: 1180px;
+  min-width: 755px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol {
+margin-right: 3.8%;
+float: left;
+min-height: 1px;
+}
+
+.row .onecol {
+width: 4.85%;
+}
+
+.row .twocol {
+width: 13.45%;
+}
+
+.row .threecol {
+width: 22.05%;
+}
+
+.row .fourcol {
+width: 30.75%;
+}
+
+.row .fivecol {
+width: 39.45%;
+}
+
+.row .sixcol {
+width: 48%;
+}
+
+.row .sevencol {
+width: 56.75%;
+}
+
+.row .eightcol {
+width: 65.4%;
+}
+
+.row .ninecol {
+width: 74.05%;
+}
+
+.row .tencol {
+width: 82.7%;
+}
+
+.row .elevencol {
+width: 91.35%;
+}
+
+.row .twelvecol {
+width: 100%;
+float: left;
+}
+
+.last {
+margin-right: 0px;
+}
+
+img, object, embed {
+max-width: 100%;
+}
+
+img {
+	height: auto;
+}
+
+
+/* Smaller screens */
+
+@media only screen and (max-width: 1023px) {
+
+	body {
+     font-size: 0.8em;
+     line-height: 1.5em;
+	}
+	
+}
+
+
+/* Mobile */
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+  	font-size: 16px;
+  	-webkit-text-size-adjust: auto;
+	}
+	
+	.row, body, .container {
+  	width: 100%;
+  	min-width: 0;
+  	margin-left: 0px;
+  	margin-right: 0px;
+  	padding-left: 0px;
+  	padding-right: 0px;
+	}
+	
+	.row .onecol, .row .twocol, .row .threecol, .row .fourcol, .row .fivecol, .row .sixcol, .row .sevencol, .row .eightcol, .row .ninecol, .row .tencol, .row .elevencol, .row .twelvecol {
+  	width: auto;
+  	float: none;
+    /* 
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    */
+	}
+
+}
 /*
 * qTip2 - Pretty powerful tooltips
 * http://craigsworks.com/projects/qtip2/
@@ -1977,3 +2109,88 @@ input.small {
 			background-color: #FBFBFB;
 			color: #555;
 		}
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+
+
+	body {
+		font-size: 0.8em;
+    line-height: 1.5em;
+	}
+	
+
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+  	font-size: 16px;
+  	-webkit-text-size-adjust: none;
+	}
+	.box {
+	  min-height: 200px;
+    height: auto;
+  }
+  
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}
+.onecol {
+width: 4.7%;
+}
+
+.twocol {
+width: 13.2%;
+}
+
+.threecol {
+width: 22.05%;
+}
+
+.fourcol {
+width: 30.6%;
+}
+
+.fivecol {
+width: 39%;
+}
+
+.sixcol {
+width: 48%;
+}
+
+.sevencol {
+width: 56.75%;
+}
+
+.eightcol {
+width: 61.6%;
+}
+
+.ninecol {
+width: 74.05%;
+}
+
+.tencol {
+width: 82%;
+}
+
+.elevencol {
+width: 91.35%;
+}
