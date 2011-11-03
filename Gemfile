@@ -26,7 +26,6 @@ group :assets do
 end
 
 # Views
-gem "will_paginate"
 gem 'jquery-rails'
 
 # Data parsing
@@ -34,6 +33,9 @@ gem "feedzirra"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Rails_Admin
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'

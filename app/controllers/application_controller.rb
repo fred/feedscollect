@@ -12,14 +12,14 @@ class ApplicationController < ActionController::Base
   def set_globals
     @start_time = Time.now.usec
     if current_user
-      @global_user_id = current_user.id
-      @site_categories = current_user.categories
+      # @global_user_id = current_user.id
+      # @site_categories = current_user.categories
       @feeds_per_page = current_user.feeds_per_page if current_user.feeds_per_page
     else
-      @global_user_id = 0
-      @site_categories = Category.all
       @feeds_per_page = FeedEntry.default_per_box
     end
+    @global_user_id = 0
+    @site_categories = Category.all
   end
     
   def logged_in?

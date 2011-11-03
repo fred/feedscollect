@@ -12,7 +12,7 @@ user = User.new(:email => "fred.the.master@gmail.com",
 )
 user.save if user.valid?
 
-role = Role.new(:name => "admin")
+role = Role.new(:title => "admin")
 role.save if role.valid?
 
 if user
