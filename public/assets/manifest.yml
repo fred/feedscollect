@@ -81,6 +81,8 @@ rails_admin/multiselect/ui-icon-circle-triangle-s-light.png: rails_admin/multise
 rails_admin/timeline/arrow_left.png: rails_admin/timeline/arrow_left.png
 rails_admin/timeline/arrow_right.png: rails_admin/timeline/arrow_right.png
 rails_admin/timeline/handler.png: rails_admin/timeline/handler.png
+rails_admin/rails_admin.js: rails_admin/rails_admin.js
 rails_admin/base/README: rails_admin/base/README
 rails_admin/custom/README: rails_admin/custom/README
+rails_admin/rails_admin.css: rails_admin/rails_admin.css
 rails_admin/themes/README: rails_admin/themes/README
