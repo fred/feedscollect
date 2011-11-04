@@ -98,7 +98,7 @@ blockquote
 
 #hfeed {
 	width:100%;
-	border:1px solid #ccc;
+	border: none;
 	float:left;
 	padding-bottom:6px;
 	margin-bottom:6px;
