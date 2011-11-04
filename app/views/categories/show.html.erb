@@ -1,6 +1,5 @@
 <%# cache @category.id do %>
   <div class="row">
-  
     <% for feed_site in @feed_sites %>
       <div class="box fourcol">
         <div class="box_title">
@@ -19,17 +18,5 @@
         </div>
       </div>
     <% end %>
-  
   </div>
-
-  <script type='text/javascript'>
-    $(document).ready(function(){
-      $('a[title]').qtip({ 
-        position: {
-          my: 'top center',  // Position my top left...
-          at: 'bottom center' // at the bottom right of...
-        }
-      })    
-  	});
-  </script>
 <%# end %>
