@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.2'
 
 gem 'mysql2', :group => :test
 gem 'mysql2', :group => :development
