@@ -1,26 +1,28 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.2'
+gem 'rails', '3.1.4'
 
-gem 'mysql2', :group => :test
-gem 'mysql2', :group => :development
-
-group :production do
-  gem 'pg'
-end
+gem 'pg'
 
 # Autthentication
 gem "cancan"
-gem "devise"
+gem "devise", "~> 1.5.3"
 
 ### File Uploading
-gem "aws-s3", :require => "aws/s3"
-gem 'paperclip'
+gem "aws-sdk"
+gem 'paperclip', "~> 2.7.0"
+
+
+gem 'sass'
+gem 'sass-rails',   '~> 3.1.6'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
+  gem "libv8"
+  gem "execjs"
+  gem "therubyracer", :require => 'v8'
+  gem 'json'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -34,8 +36,6 @@ gem "feedzirra"
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Rails_Admin
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -50,3 +50,11 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+
+### Active Admin, loaded at end.
+gem "meta_search"
+gem 'activeadmin'
+
+# Twitter Bootstrap for Rails 3 Asset Pipeline
+gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"

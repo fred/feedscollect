@@ -6,4 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require css3_mediaqueries
+//= require easyTooltip
+//= require browser_detect
+//= require modernizr

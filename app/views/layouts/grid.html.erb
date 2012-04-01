@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
     <meta name="HandheldFriendly" content="true"/>
     <!-- The 1140px Grid - http://cssgrid.net/ -->
-  	<%= stylesheet_link_tag "grid.css" %>
-  	<!-- 1140px Grid styles for IE -->
-  	<!--[if lte IE 9]><%= stylesheet_link_tag "ie.css" %><![endif]-->
-  	<%= stylesheet_link_tag "application.css" %>
+    <%= stylesheet_link_tag "grid.css" %>
+    <!-- 1140px Grid styles for IE -->
+    <!--[if lte IE 9]><%= stylesheet_link_tag "ie.css" %><![endif]-->
+    <%= stylesheet_link_tag "application.css" %>
     <%= yield(:head) %>
     <%#= render :partial => "/shared/user_css" %>
     <%= render :partial => "/shared/flattr_header" %>
@@ -38,25 +38,25 @@
     
     <div id="wrapper"><!-- Begin wrapper -->
 
-  		<div id="header"><!-- Begin header -->
-  			<h1><a href="/" title="Back to home">Your Tech News Homepage</a></h1>
-  			<ul>
-  			  <% @site_categories.each do |t| %>
-  			    <li class="<%=highlight(t.id)%>"><%= link_to t.title, t %></li>
-  			  <% end %>
-  			</ul>
-  		</div>
+      <div id="header"><!-- Begin header -->
+        <h1><a href="/" title="Back to home">Your Tech News Homepage</a></h1>
+        <ul>
+          <% @site_categories.each do |t| %>
+            <li class="<%=highlight(t.id)%>"><%= link_to t.title, t %></li>
+          <% end %>
+        </ul>
+      </div>
 
-  		<hr />
+      <hr />
 
-  		<div id="outer-space"><!-- Begin outer-space -->
+      <div id="outer-space"><!-- Begin outer-space -->
 
-  			<div id="hfeed">
-  				
-  				<div class="hentry">
+        <div id="hfeed">
+          
+          <div class="hentry">
 
-  					<div class="entry-meta">
-  					  <% if notice %>
+            <div class="entry-meta">
+              <% if notice %>
                 <p class="notice"><%= notice %></p>
               <% end %>
               <% if alert %>
@@ -65,31 +65,31 @@
               <div class="container">
                 <%= yield %>
               </div>
-              <div class="clear"></div>              
-   					</div>
-  				</div>
+              <div class="clear"></div>
+             </div>
+          </div>
 
-  				
-  			</div>
+          
+        </div>
 
-  			<hr />
+        <hr />
 
-  			<div class="clear"></div>
+        <div class="clear"></div>
 
-  		</div><!-- End outer-space -->
-  		
-  		<div class="clear"></div>
+      </div><!-- End outer-space -->
+      
+      <div class="clear"></div>
 
-  		<hr />
+      <hr />
 
       <%= render :partial => "/shared/footer" %>
 
-  	</div><!-- End wrapper -->
-  	
-  	<% if Rails.env == "production" %>
-  	  <%= render :partial => "/shared/ga" %>
-  	<% end %>
-  	
+    </div><!-- End wrapper -->
+    
+    <% if Rails.env == "production" %>
+      <%= render :partial => "/shared/ga" %>
+    <% end %>
+    
   </body>
   <%= javascript_include_tag "application" %>
   <%= render :partial => "/shared/qtip" %>

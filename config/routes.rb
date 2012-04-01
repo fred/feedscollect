@@ -1,6 +1,8 @@
 Technews::Application.routes.draw do
-  
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users
 

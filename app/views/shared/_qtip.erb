@@ -1,10 +1,7 @@
 <script type='text/javascript'>
-  $(document).ready(function(){
-    $('a[title]').qtip({ 
-      position: {
-        my: 'top center',  // Position my top left...
-        at: 'bottom center' // at the bottom right of...
-      }
-    })    
-	});
+  if (!(Modernizr.touch)) {
+    $(document).ready(function(){
+      $("a").easyTooltip();
+    });
+  }
 </script>

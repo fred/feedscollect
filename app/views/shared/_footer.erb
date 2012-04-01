@@ -1,28 +1,24 @@
 <div class="footer">
-	<p>
-	  <%= link_to image_tag("top.png"), "#top", :class=> "scroll_top" %>
-	  <br />
-	  <%= link_to "Top of Page", "#top", :class=> "scroll_top" %>
-	</p>
-	
-	<br />
-	<%= render :partial => "/shared/flattr_normal_button" %>
-	<br />
-	
-	<small>
+  <p>
+    <%= link_to image_tag("top.png"), "#top", :class=> "scroll_top" %>
+    <br />
+    <%= link_to "Top of Page", "#top", :class=> "scroll_top" %>
+  </p>
+  
+  <br />
+  <%= render :partial => "/shared/flattr_normal_button" %>
+  <br />
+  
+  <small>
     Rendered for you in <strong><%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %></strong> seconds
     <br />
-  	Powered by: 
-  	<%=link_to "Rails", "http://github.com/rails/rails" %>,
-  	<%=link_to "Feedzirra", "http://github.com/pauldix/feedzirra" %>,
-  	<%=link_to "Heroku", "http://www.heroku.com/" %>,
-  	<br />
-  	<%=link_to "Source Code at Github", "http://github.com/fred/feedscollect" %>
-  	<br />
-  	<%= render :partial => "/shared/license" %>
-	</small>
+    Powered by: 
+    <%=link_to "Rails", "http://github.com/rails/rails" %>,
+    <%=link_to "Feedzirra", "http://github.com/pauldix/feedzirra" %>,
+    <%=link_to "Heroku", "http://www.heroku.com/" %>,
+    <br />
+    <%=link_to "Source Code at Github", "http://github.com/fred/feedscollect" %>
+    <br />
+    <%= render :partial => "/shared/license" %>
+  </small>
 </div>
-
-<script type="text/javascript">
-  $(".scroll_top").scrollTo('#top');//the plugin will take care of this
-</script>
