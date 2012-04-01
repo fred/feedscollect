@@ -142,11 +142,14 @@ class FeedSite < ActiveRecord::Base
         # again, might loose a feed entry in rare cases.
         if (@feed_entries_count==0) or (last_modified && (last_modified.to_i > (self.last_modified.to_i+60)))
           fi = FeedEntry.new
-          fi.title = t.title
+          fi.title = t.title.to_s[0..250]
           fi.url = t.url
           fi.url = fi.url unless (!t.url && fi.url && fi.url.match(/^http|^https/))
-          fi.author = t.author
-          fi.summary = t.summary 
+          if fi.url.match(/\?/)
+            fi.url = fi.url.to_s.split("?").first.to_s[0..250]
+          end
+          fi.author = t.author.to_s[0..250]
+          fi.summary = t.summary
           # fi.summary = t.content if fi.summary.to_s.empty?
           # fi.content = t.content if (self.featured)
           fi.published = last_modified
