@@ -28,6 +28,7 @@ class CategoriesController < ApplicationController
     else
       @title = @category.description
     end
+    
     max_age = ((Time.now.min-60).abs)*60
     headers['Cache-Control'] = "public, max-age=#{max_age}"
     # for benchmarking

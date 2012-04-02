@@ -19,6 +19,18 @@ class Category < ActiveRecord::Base
     end
   end
   
+  # Returns an improved cache_key that includes the last image on the item
+  def cache_key_full
+    if self.last_feed_site
+      self.cache_key + "/" + self.last_feed_site.updated_at.to_s(:number)
+    else
+      self.cache_key
+    end
+  end
+  
+  def last_feed_site
+    self.feed_sites.order("updated_at DESC").first
+  end
   
   def clear_cache
     system("rm -rf #{Rails.root}/tmp/cache/*")

@@ -1,4 +1,5 @@
-<%# cache @category.id do %>
+<!-- CACHE KEY: <%= @category.cache_key_full %> -->
+<% cache @category.cache_key_full do %>
   <div class="row">
     <% for feed_site in @feed_sites %>
       <div class="box fourcol">
@@ -19,4 +20,4 @@
       </div>
     <% end %>
   </div>
-<%# end %>
+<% end %>

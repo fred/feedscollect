@@ -5,6 +5,8 @@ gem 'thin'
 gem 'pg'
 gem 'rack-cache'
 
+gem 'dalli', "~> 2.0.2"
+
 # Autthentication
 gem "cancan"
 gem "devise", "~> 1.5.3"
