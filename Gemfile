@@ -15,6 +15,7 @@ gem "devise", "~> 1.5.3"
 gem "aws-sdk"
 gem 'paperclip', "~> 2.7.0"
 
+gem 'resque', :git => 'https://github.com/hone/resque.git', :branch => 'keepalive'
 
 gem 'sass'
 gem 'sass-rails',   '~> 3.1.6'

@@ -35,6 +35,13 @@ Technews::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
+  
+  if ENV['MEMCACHE_SERVERS']
+    Dalli::Client.new(ENV['MEMCACHE_SERVERS'],
+        :username => ENV['MEMCACHE_USERNAME'],
+        :password => ENV['MEMCACHE_PASSWORD'],
+        :expires_in => 3600)
+  end
 
   # Use a different cache store in production
   config.cache_store = :dalli_store

@@ -143,8 +143,8 @@ class FeedSite < ActiveRecord::Base
         if (@feed_entries_count==0) or (last_modified && (last_modified.to_i > (self.last_modified.to_i+60)))
           fi = FeedEntry.new
           fi.title = t.title.to_s[0..250]
-          fi.url = t.url
-          fi.url = fi.url unless (!t.url && fi.url && fi.url.match(/^http|^https/))
+          fi.url = t.url[0..250]
+          fi.url = fi.url[0..250] unless (!t.url && fi.url && fi.url.match(/^http|^https/))
           if fi.url.match(/\?/)
             fi.url = fi.url.to_s.split("?").first.to_s[0..250]
           end
