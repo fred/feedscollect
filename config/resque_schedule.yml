@@ -1,0 +1,5 @@
+test_job:
+  every: 1h
+  class: FeedProcessing
+  args:
+  description: Process all feeds every 1 hour

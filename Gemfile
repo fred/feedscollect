@@ -15,8 +15,6 @@ gem "devise", "~> 1.5.3"
 gem "aws-sdk"
 gem 'paperclip', "~> 2.7.0"
 
-gem 'resque', :git => 'https://github.com/hone/resque.git', :branch => 'keepalive'
-
 gem 'sass'
 gem 'sass-rails',   '~> 3.1.6'
 
@@ -42,7 +40,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn', "~> 4.2.1", :require => false
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -55,10 +53,18 @@ group :test do
   gem 'turn', :require => false
 end
 
-
 ### Active Admin, loaded at end.
 gem "meta_search"
 gem 'activeadmin'
 
 # Twitter Bootstrap for Rails 3 Asset Pipeline
 gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"
+
+
+### Queueing System using Resque for Job Scheduling
+gem 'resque', :git => 'https://github.com/hone/resque.git', :branch => 'keepalive'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+
+### For running all processes in the Procfile
+gem 'foreman'
+
