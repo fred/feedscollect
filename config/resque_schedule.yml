@@ -1,5 +1,5 @@
 test_job:
-  cron: "0 55 * * *"
+  every: 30m
   class: FeedProcessing
   args:
-  description: Process all feeds every 1 hour
+  description: Process all feeds every 30 minutes

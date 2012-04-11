@@ -29,8 +29,10 @@ class CategoriesController < ApplicationController
       @title = @category.description
     end
     
-    max_age = ((Time.now.min-60).abs)*60
-    headers['Cache-Control'] = "public, max-age=#{max_age}"
+    # max_age = ((Time.now.min-60).abs)*60
+    # headers['Cache-Control'] = "public, max-age=#{max_age}"
+    headers['Cache-Control'] = "public, max-age=900" # 15 minutes
+    
     # for benchmarking
     # @feed_sites = FeedSite.all if params[:bench]
     respond_to do |format|
