@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.4'
+gem 'rails', '3.2.3'
 gem 'thin'
 gem 'pg'
 gem 'rack-cache'
@@ -16,7 +16,7 @@ gem "aws-sdk"
 gem 'paperclip', "~> 2.7.0"
 
 gem 'sass'
-gem 'sass-rails',   '~> 3.1.6'
+gem 'sass-rails', '~> 3.2.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,15 +25,15 @@ group :assets do
   gem "execjs"
   gem "therubyracer", :require => 'v8'
   gem 'json'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'uglifier', '>= 1.2.4'
 end
 
 # Views
 gem 'jquery-rails'
 
 # Data parsing
-gem "feedzirra"
+gem "feedzirra", :git => "git://github.com/lumpidu/feedzirra.git"
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

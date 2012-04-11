@@ -82,7 +82,7 @@ class FeedSite < ActiveRecord::Base
             msg = "...success for feed: #{t.id}"
           else
             msg = "...cannot save feed: #{t.id}"
-          end          
+          end
         }
       rescue Timeout::Error
         msg = "...timeout for feed #{t.id}"
