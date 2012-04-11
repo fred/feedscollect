@@ -1,0 +1,11 @@
+*.psd
+*.pdf
+*.sql
+*~
+.DS_Store
+test
+spec
+doc
+features
+vendor/cache
+tmp/*
