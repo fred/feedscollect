@@ -12,11 +12,14 @@
     <![endif]-->
 
     <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= yield(:stylesheets) %>
 
-    <link href="images/favicon.ico" rel="shortcut icon">
-    <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
-    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
-    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="/assets/favicon.png" rel="shortcut icon">
+    <link href="/assets/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/assets/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="/assets/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    
+    <%= yield(:head) %>
   </head>
   <body>
 
@@ -64,5 +67,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
     <%= render :partial => "/shared/qtip" %>
+    <%= yield(:javascripts) %>
   </body>
 </html>
