@@ -5,20 +5,26 @@
     <%= link_to "Top of Page", "#top", :class=> "scroll_top" %>
   </p>
   
-  <br />
-  <%= render :partial => "/shared/flattr_normal_button" %>
-  <br />
-  
-  <small>
-    Rendered for you in <strong><%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %></strong> seconds
+  <div class="flattr">
+    <%= render :partial => "/shared/flattr_normal_button" %>
     <br />
-    Powered by: 
+    <%= link_to "What is Flattr?", 
+          "http://www.mathaba.net/news/?x=630192", 
+          :target => "blank", :title => "What is this Flattr thing? Clink to see why you should join Flattr.<br />Link will open in new page." %>
+  </div>
+  
+  <p>
+    Rendered in <strong><%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %></strong> seconds
+  </p>
+  <p>
+    Powered by:
     <%=link_to "Rails", "http://github.com/rails/rails" %>,
     <%=link_to "Feedzirra", "http://github.com/pauldix/feedzirra" %>,
     <%=link_to "Heroku", "http://www.heroku.com/" %>,
-    <br />
-    <%=link_to "Source Code at Github", "http://github.com/fred/feedscollect" %>
+    <%=link_to "Bootstrap", "http://twitter.github.com/bootstrap/" %>,
+    <%=link_to "Resque", "https://github.com/defunkt/resque/" %> - 
+    <%=link_to "Source Code", "http://github.com/fred/feedscollect" %>
     <br />
     <%= render :partial => "/shared/license" %>
-  </small>
+  </p>
 </div>

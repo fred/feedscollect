@@ -2,11 +2,11 @@
 /* ! Layout for desktop version   */
 /* ============================== */
 
-	body {
-		font-size: 0.8em;
+  body {
+    font-size: 0.8em;
     line-height: 1.5em;
-	}
-	
+  }
+  
 
 /* ============================= */
 /* ! Layout for mobile version   */
@@ -14,12 +14,12 @@
 
 @media handheld, only screen and (max-width: 767px) {
 
-	body {
-  	font-size: 16px;
-  	-webkit-text-size-adjust: none;
-	}
-	.box {
-	  min-height: 200px;
+  body {
+    font-size: 16px;
+    -webkit-text-size-adjust: none;
+  }
+  .box {
+    min-height: 200px;
     height: auto;
   }
   
@@ -33,9 +33,9 @@
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) { 
 
-/*	.logo {
-		background: url(logo2x.jpg) no-repeat;
-		background-size: 212px 303px;
-	}*/
+/*  .logo {
+    background: url(logo2x.jpg) no-repeat;
+    background-size: 212px 303px;
+  }*/
 
 }

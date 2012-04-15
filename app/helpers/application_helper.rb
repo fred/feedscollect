@@ -48,7 +48,7 @@ module ApplicationHelper
   
   def highlight(id)
     if id.to_s == params[:id].to_s
-      return "highlight"
+      return "active"
     else
       return ""
     end

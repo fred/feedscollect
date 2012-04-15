@@ -17,6 +17,7 @@ gem 'paperclip', "~> 2.7.0"
 
 gem 'sass'
 gem 'sass-rails', '~> 3.2.5'
+gem 'coffee-rails', '~> 3.2.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,7 +26,6 @@ group :assets do
   gem "execjs"
   gem "therubyracer", :require => 'v8'
   gem 'json'
-  gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.2.4'
 end
 
@@ -55,7 +55,8 @@ end
 
 ### Active Admin, loaded at end.
 gem "meta_search"
-gem 'activeadmin'
+gem "formtastic", "~> 2.1.1"
+gem 'activeadmin', "~> 0.4.3"
 
 # Twitter Bootstrap for Rails 3 Asset Pipeline
 gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"

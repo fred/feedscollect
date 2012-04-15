@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
 
-  layout "grid"
+  layout "fluid"
   
   before_filter :set_globals
     

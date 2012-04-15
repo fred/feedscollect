@@ -6,7 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require css3_mediaqueries
+//= require twitter/bootstrap
 //= require easyTooltip
 //= require browser_detect
 //= require modernizr
+//= require bootstrap

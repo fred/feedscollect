@@ -1,0 +1,10 @@
+<header class="jumbotron subhead" id="overview">
+  <h1>Technews Homepage</h1>
+  <div class="subnav">
+    <ul class="nav nav-pills">
+      <% @site_categories.each do |t| %>
+        <li class="<%=highlight(t.id)%>"><%= link_to t.title, t %></li>
+      <% end %>
+    </ul>
+  </div>
+</header>
