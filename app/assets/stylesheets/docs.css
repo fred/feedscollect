@@ -645,7 +645,20 @@ form.well {
   body {
     padding-top: 70px;
   }
+  
+  .container-fluid {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 
+  .box {
+    height: auto;
+  }
+  .box p {
+    font-size: 16px;
+    padding-top: 4px;
+  }
+  
   /* Change up some type stuff */
   h2 {
     margin-top: 27px;
@@ -734,6 +747,17 @@ form.well {
   body {
     padding-top: 0;
   }
+  .container-fluid {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .box {
+    height: auto;
+  }
+  .box p {
+    font-size: 16px;
+    padding-top: 4px;
+  }
 
   /* Jumbotron buttons */
   .jumbotron .btn {
@@ -793,6 +817,18 @@ form.well {
 
 
 @media (min-width: 480px) and (max-width: 768px) {
+
+  .container-fluid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .box {
+    height: auto;
+  }
+  .box p {
+    font-size: 16px;
+    padding-top: 4px;
+  }
 
   /* Scale down the jumbotron content */
   .jumbotron h1 {
