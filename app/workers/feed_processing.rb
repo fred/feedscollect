@@ -1,4 +1,8 @@
+require 'resque-history'
+
 class FeedProcessing
+  extend Resque::Plugins::History
+  @max_history = 50
   @queue = :feed_queue
   
   def self.perform

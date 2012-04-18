@@ -1,5 +1,6 @@
 require 'resque/server'
 require 'resque_scheduler'
+require 'resque-history/server'
 
 if ENV["REDISTOGO_URL"]
   uri = URI.parse(ENV["REDISTOGO_URL"])

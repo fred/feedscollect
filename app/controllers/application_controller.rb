@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       @feeds_per_page = FeedEntry.default_per_box
     end
     @global_user_id = 0
-    @site_categories = Category.all
+    @site_categories = Category.order("id ASC").all
   end
     
   def logged_in?

@@ -65,6 +65,7 @@ gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootst
 ### Queueing System using Resque for Job Scheduling
 gem 'resque', :git => 'https://github.com/hone/resque.git', :branch => 'keepalive'
 gem 'resque-scheduler', :require => 'resque_scheduler'
+gem "resque-history", :git => "git://github.com/fred/resque-history.git"
 
 ### For running all processes in the Procfile
 gem 'foreman'

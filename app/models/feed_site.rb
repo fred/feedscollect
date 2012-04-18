@@ -5,7 +5,7 @@ class FeedSite < ActiveRecord::Base
   
   has_attached_file :avatar, 
     :styles => { :large => "200x30>", :medium => "180x28>", :small => "160x26>" },
-    :convert_options => { :thumb => '-quality 92' },
+    :convert_options => { :small => '-quality 92' },
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml"
   

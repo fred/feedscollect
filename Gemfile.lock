@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/fred/resque-history.git
+  revision: d4bdf7fc10e583636b92a1700c0c96d1e6d4a948
+  specs:
+    resque-history (1.6.0)
+      rake
+      resque
+      resque-history
+
+GIT
   remote: git://github.com/lumpidu/feedzirra.git
   revision: 8ec6af77da16150e26bed46a3eb7dd957c2c6359
   specs:
@@ -15,7 +24,7 @@ GIT
 
 GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 4b10325bea2698c37f1e0aa52e50dd47c73352da
+  revision: eb348d89373bd3828848887bc0f7c3a6aed236d9
   specs:
     twitter-bootstrap-rails (2.0.6)
       actionpack (>= 3.1)
@@ -133,7 +142,7 @@ GEM
     less (2.1.0)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.10.0)
-    less-rails (2.2.0)
+    less-rails (2.2.1)
       actionpack (>= 3.1)
       less (~> 2.1.0)
     libv8 (3.3.10.4)
@@ -149,8 +158,8 @@ GEM
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
     mime-types (1.18)
-    multi_json (1.2.0)
-    multi_xml (0.4.2)
+    multi_json (1.3.2)
+    multi_xml (0.4.4)
     nokogiri (1.5.2)
     orm_adapter (0.0.7)
     paperclip (2.7.0)
@@ -227,7 +236,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.9.4)
+    turn (0.9.5)
       ansi
     tzinfo (0.3.33)
     uglifier (1.2.4)
@@ -267,6 +276,7 @@ DEPENDENCIES
   rack-cache
   rails (= 3.2.3)
   resque!
+  resque-history!
   resque-scheduler
   sass
   sass-rails (~> 3.2.5)

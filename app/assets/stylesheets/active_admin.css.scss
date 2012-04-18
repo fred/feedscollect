@@ -2,5 +2,259 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+
 // To customize the Active Admin interfaces, add your
 // styles here:
+
+//::-moz-scrollbar {
+//  -webkit-appearance: always;
+//  width: 8px;
+//}
+//::-webkit-scrollbar-thumb {
+//  border-radius: 4px;
+//  background-color: rgba(0,0,0,.5);
+//  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+//}
+
+body {
+  font-size: 80%;
+}
+
+
+#title_bar #titlebar_right {
+  text-align: center;
+}
+
+#active_admin_content {
+  padding: 12px 20px;
+}
+form input[type="select"],
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="url"],
+form input[type="tel"],
+form textarea {
+  font-size: 16px;
+  padding: 6px 8px;
+}
+input[type="number"] {
+  font-size: 14px;
+  padding: 4px;
+}
+fieldset legend.label label, 
+form label.label {
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 24px;
+}
+.sidebar_sction input[type="text"],
+.sidebar_section input[type="password"],
+.sidebar_section input[type="email"],
+.sidebar_section input[type="url"],
+.sidebar_section input[type="tel"],
+.sidebar_section textarea {
+  font-size: 13px;
+  padding: 3px 6px;
+}
+.sidebar_section form label.label,
+.panel_contents form label.label {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+ol.choices-group {
+  height: 360px;
+  overflow: scroll;
+  padding-right: 20px;
+  box-shadow: 0px 0px 8px #CCC;
+  width: auto;
+  padding-right: 20px;
+  min-width: 150px;
+}
+form fieldset.choices {
+  margin-bottom: 0px;
+}
+
+li.boolean label,
+li.input label,
+li.optional label,
+form fieldset label, 
+form fieldset.choices li.choice label {
+  font-size: 14px;
+  font-weight: normal;
+  padding-left: 2px;
+}
+li.choice input[type="checkbox"] {
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+form input[type="submit"] {
+  font-size: 14px;
+}
+form fieldset legend span {
+  font-size: 15px;
+}
+form fieldset > ol > li fieldset legend {
+  padding-top: 6px;
+  padding-left: 2px;
+}
+form fieldset img,
+form fieldset p,
+form fieldset h2,
+form fieldset li,
+form fieldset h3,
+form fieldset h4 {
+  padding-left: 10px;
+}
+form hr {
+  color:#fff;
+  border-color:#fff;
+}
+
+form #googlemap {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 2%;
+  padding: 2px;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 6px #999;
+  border-radius: 6px;
+}
+
+form input.full_sized {
+  width: 176px;
+}
+form input.auto_sized {
+  width: auto;
+}
+
+form div.small_box {
+  float: left;
+  margin: 10px 0 10px 20px;
+  padding: 10px;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 6px #999;
+  width: 200px;
+}
+
+form div.small_box label {
+  padding-right: 6px;
+}
+form div.medium_box {
+  float:left;
+  min-width: 200px;
+  margin: 10px 0 10px 20px;
+  padding: 10px;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 6px #999;
+}
+form div.medium_box fieldset ol > li {
+  display: block;
+  margin-bottom:5px;
+}
+form div.medium_box fieldset ol > li label {
+  display: block;
+  width: 90%;
+  float: left;
+}
+
+img.show_listing_img {
+  margin: 9px;
+  box-shadow: 0px 0px 8px #888;
+  padding: none;
+  border: 1px solid #eee;
+}
+span.image {
+  float: left;
+  display: block;
+  text-align: center;
+  margin: 10px 10px 0 0;
+  border: 1px solid #DDD;
+  padding-bottom: 4px;
+}
+span.image p {
+  margin: 0;
+  padding: 0;
+}
+
+.index_as_block {
+  float: left;
+  display: block;
+}
+.index_as_block h2,
+.index_as_block h3,
+.index_as_block h4,
+.index_as_block p {
+  margin: 1px 1px 2px 8px;
+  padding: 0px;
+}
+.index_as_block .grid_images {
+  float: left;
+  margin-right: 6px;
+  width: 280px;
+  height: 320px;
+  text-align: left;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+.index_as_block .grid_images img {
+  margin: 8px;
+  box-shadow: 0px 0px 7px #888;
+  padding: none;
+  border: 1px solid #eee;
+}
+
+
+a.featured_true {
+  font-weight: bold;
+}
+
+nav.pagination {
+  font-size: 1em;
+}
+#index_footer {
+  font-size: 1em;
+}
+
+
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+
+table.dashboard .dashboard_section > div {
+  padding: 2px 0px 2px 8px;
+}
+
+#item_title_counter,
+#item_abstract_counter {
+  margin-left: 21%;
+  color: #666;
+  font-style: italic;
+  padding: 1px;
+}
+
+table.index_table td {
+  padding: 10px 6px;
+}
+
+.hidden {
+  display: none;
+}
+
+form fieldset ol > li label abbr {
+  color: #555;
+  padding-left: 2px;
+}
+
+img.youtube_mini {
+  max-width: 80px;
+  max-height: 80px;
+}
