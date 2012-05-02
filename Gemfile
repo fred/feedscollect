@@ -40,7 +40,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 
 # Use unicorn as the web server
-gem 'unicorn', "~> 4.2.1", :require => false
+gem 'unicorn', "~> 4.3.1", :require => false
 
 # Deploy with Capistrano
 # gem 'capistrano'

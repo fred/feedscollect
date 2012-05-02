@@ -1,4 +1,4 @@
-test_job:
+feed_parsing:
   every: 30m
   class: FeedProcessing
   args:
