@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.6'
 gem 'thin'
 gem 'pg'
 gem 'rack-cache'
 
-gem 'dalli', "~> 2.0.2"
+gem 'dalli', "~> 2.0.5"
 
 # Autthentication
 gem "cancan"
@@ -56,7 +56,7 @@ end
 ### Active Admin, loaded at end.
 gem "meta_search"
 gem "formtastic", "~> 2.1.1"
-gem 'activeadmin', "~> 0.4.3"
+gem 'activeadmin', "~> 0.4.4"
 
 # Twitter Bootstrap for Rails 3 Asset Pipeline
 gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"
