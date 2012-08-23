@@ -59,7 +59,7 @@ Technews::Application.configure do
   config.action_mailer.default_url_options = { :host => 'technews-homepage.com' }
 
   # Enable threaded mode
-  # config.threadsafe!
+  config.threadsafe!
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)

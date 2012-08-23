@@ -128,7 +128,7 @@ class FeedSite < ActiveRecord::Base
     @feed_entries_count = self.feed_entries.count
     if (@feed_entries_count==0) or (etag && (etag != self.etag)) or (feed_last_modified.to_i > (self.last_modified.to_i+60))
       
-      feed.entries[0..30].each do |t|  
+      feed.entries[0..30].each do |t|
         # Some stupid RSS feeds don't put last_modified on the feed entry.
         # if don't have last_modified, im skiping, screw those.
         if t.last_modified && (t.last_modified.is_a? Time)
@@ -167,7 +167,6 @@ class FeedSite < ActiveRecord::Base
       self.last_modified = feed_last_modified
       self.etag = etag
     end
-    system("rm -rf #{Rails.root}/tmp/cache/*")
     true
   end
   
