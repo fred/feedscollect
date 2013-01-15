@@ -1,4 +1,13 @@
 module ApplicationHelper
+
+  def cache_expiring(cache_key, cache_period = 4.hours, no_cache = false)
+    if no_cache
+      yield
+    else
+      key = [cache_key, Time.now.to_i / cache_period].join('/')
+      cache(key){ yield }
+    end
+  end
   
   def get_feed_title(feed)
     "<b>#{strip_tags(feed.title.to_s)}</b>"+

@@ -1,2 +1,2 @@
-rvm ruby-1.9.3-p194
-export PORT=3015
+rvm use ruby-1.9.3-p327
+. keys.sh

@@ -59,8 +59,7 @@ class FeedSitesController < ApplicationController
   end
   
   def refresh_xluriwaplezx
-    # FeedSite.refresh
-    Resque.enqueue(FeedProcessing)
+    FeedProcessing.perform_async
     flash[:notice] = "Refreshing all feeds now..."
     redirect_to root_path
   end

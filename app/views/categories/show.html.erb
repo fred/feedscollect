@@ -1,5 +1,4 @@
-<!-- CACHE KEY: <%= @category.cache_key_full %> -->
-<% cache @category.cache_key_full do %>
+<% cache_expiring(@category.cache_key_full, 900) do %>
   <div class="row-fluid">
     <% @feed_sites.each_with_index do |feed_site,i| %>
       <div class="span4">

@@ -1,9 +1,7 @@
 class CategoriesController < ApplicationController
-  
+
   before_filter :require_user, :only => [:new, :edit, :create, :update, :destroy]
-  
-  # GET /categories
-  # GET /categories.xml
+
   def index
     if logged_in? 
       @categories = current_user.own_categories
@@ -16,39 +14,27 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET /categories/1
-  # GET /categories/1.xml
   def show
     @category = Category.find(params[:id])
     @feed_sites = @category.feed_sites
     session[:last_category] = @category.id
-    
-    if @category.description.to_s.blank?
-      @title = @category.title
-    else
+    if @category.description.present?
       @title = @category.description
+    else
+      @title = @category.title
     end
-    
-    # max_age = ((Time.now.min-60).abs)*60
-    # headers['Cache-Control'] = "public, max-age=#{max_age}"
-    headers['Cache-Control'] = "public, max-age=900" # 15 minutes
-    
-    # for benchmarking
-    # @feed_sites = FeedSite.all if params[:bench]
+    headers['Cache-Control'] = "public, max-age=600"
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.xml  { render :xml => @category }
     end
   end
-  
-  
+
   def home
     home_page_category_id = nil
     home_page_category_id = session[:last_category] if session[:last_category]
     home_page_category_id = current_user.home_page_category_id if current_user
-    
     @category = Category.default_category(home_page_category_id)
-
     params[:id] = @category.id
     @feed_sites = @category.feed_sites(:include => :feed_entries)
     if @category.description.to_s.blank?
@@ -59,26 +45,21 @@ class CategoriesController < ApplicationController
     render :action => "show"
   end
 
-  # GET /categories/new
-  # GET /categories/new.xml
   def new
     @category = Category.new
     @title = "New Category"
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @category }
     end
   end
 
-  # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id], :conditions => ["owner_id = ?", current_user.id])
     @title = "Edit Category: #{@category.title}"
   end
 
-  # POST /categories
-  # POST /categories.xml
   def create
     @category = Category.new(params[:category])
     @title = "New Category"
@@ -97,8 +78,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PUT /categories/1
-  # PUT /categories/1.xml
   def update
     @category = Category.find(params[:id], :conditions => ["owner_id = ?", current_user.id])
     @category.owner_id = current_user.id
@@ -114,8 +93,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.xml
   def destroy
     @category = Category.find(params[:id], :conditions => ["owner_id = ?", current_user.id])
     @category.destroy

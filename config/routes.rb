@@ -1,6 +1,10 @@
 Technews::Application.routes.draw do
-  
-  mount Resque::Server, :at => "/resque-web"
+
+  require 'sidekiq/web'
+  constraint = lambda { |request| request.env["warden"].authenticate? && request.env['warden'].user.is_admin? }
+  constraints constraint do
+    mount Sidekiq::Web => '/queue'
+  end
 
   ActiveAdmin.routes(self)
 

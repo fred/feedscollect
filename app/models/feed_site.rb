@@ -67,32 +67,33 @@ class FeedSite < ActiveRecord::Base
     self.feed_entries.destroy_all
     self.save
   end
+
+  def self.parallel_refresh
+    FeedSite.all.each do |t|
+      t.delay.fetch_feed
+    end
+  end
   
   def self.refresh(start=1)
-    all_feeds = FeedSite.find(:all, :conditions => ["id >= ?", start])
-    all_feeds.each do |t|
-      msg = "Refreshing feed: #{t.id}..."
-      logger.info msg
-      puts msg
-      
-      # 1 minute timeout
-      begin
-        Timeout::timeout(60) {
-          if t.save
-            msg = "...success for feed: #{t.id}"
-          else
-            msg = "...cannot save feed: #{t.id}"
-          end
-        }
-      rescue Timeout::Error
-        msg = "...timeout for feed #{t.id}"
-      end
-      logger.info msg
-      puts msg
-      puts ""
+    FeedSite.where("id >= ?", start).each do |t|
+      t.fetch_feed
     end
     Category.all.each {|t| t.touch}
-    GC.start
+  end
+
+  def fetch_feed
+    begin
+      logger.info "Refreshing feed: #{self.id}..."
+      Timeout::timeout(2.minutes) {
+        if self.save
+          logger.info "...success for feed: #{self.id}"
+        else
+          logger.info "...cannot save feed: #{self.id}"
+        end
+      }
+    rescue Timeout::Error
+      logger.info "...timeout for feed #{self.id}"
+    end
   end
   
   def save_details
@@ -154,16 +155,14 @@ class FeedSite < ActiveRecord::Base
           # fi.content = t.content if (self.featured)
           fi.published = last_modified
           fi.save
-          msg="new: #{fi.title}"
+          msg="New: #{fi.title}"
           logger.info msg
-          puts msg
           self.feed_entries << fi
           @entries_count +=1
         end
       end
       msg = "Added #{@entries_count} new items to #{feed.title}."
       logger.info msg
-      puts msg
       self.last_modified = feed_last_modified
       self.etag = etag
     end
