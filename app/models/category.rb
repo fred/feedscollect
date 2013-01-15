@@ -17,7 +17,7 @@ class Category < ActiveRecord::Base
     if home_page_category_id
       self.find(home_page_category_id)
     else
-      self.where("default_home = ?", true)
+      self.where("default_home = ?", true).first
     end
   end
 
