@@ -125,3 +125,5 @@ active_admin/application.js: active_admin/application-779f888844e34dddc8281502d7
 active_admin/application/index.js: active_admin/application-779f888844e34dddc8281502d7c62620.js
 active_admin/pages/application.js: active_admin/pages/application-9962e9eb4723fd98f06bcc5dd97d3416.js
 active_admin/pages/application/index.js: active_admin/pages/application-9962e9eb4723fd98f06bcc5dd97d3416.js
+active_admin/print.css: active_admin/print-80ebe25ed30c2f719a2720c7dffad181.css
+active_admin/print/index.css: active_admin/print-80ebe25ed30c2f719a2720c7dffad181.css

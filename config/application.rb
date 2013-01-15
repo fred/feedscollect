@@ -47,6 +47,6 @@ module Technews
     
     # for deploying Rails 3.1 on Heroku
     config.assets.initialize_on_precompile = false
-    config.assets.precompile += %w( grid.css ie.css active_admin.js active_admin.css )
+    config.assets.precompile += %w( grid.css ie.css active_admin.js active_admin.css active_admin/print.css )
   end
 end
