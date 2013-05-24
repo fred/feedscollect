@@ -1,6 +1,6 @@
 require './lib/scheduler.rb'
 
-REDIS_NAMESPACE = 'technews'
+REDIS_NAMESPACE = "technews_#{Rails.env.to_s}"
 
 if ENV["REDISTOGO_URL"].present?
   url = ENV["REDISTOGO_URL"]
@@ -14,7 +14,7 @@ end
 
 Sidekiq.configure_server do |config|
   config.redis = { url: url, namespace: REDIS_NAMESPACE }
-  Technews::FeedScheduler.new.run!
+  Technews::FeedScheduler.new.async.run
 end
 # Next, you need to configure the Sidekiq client, which is similar.
 # If you're using the client with a single-threaded Rails (or other ruby) process,
