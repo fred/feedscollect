@@ -7,16 +7,16 @@ module Technews
   class FeedScheduler
     include Celluloid
 
-    # run every 1 hour
-    POLL_INTERVAL = 3_600
+    # run every 30 minutes
+    POLL_INTERVAL = 1800
 
     def run
-      Rails.logger.info("[Celluloid] Starting Feed Processing scheduler thread")
+      Sidekiq.logger.info("[Celluloid] Starting Feed Processing scheduler thread")
       loop do
-        sleep 20
+        sleep 10
         Sidekiq.logger.info("[Celluloid] Running Feed Processing from scheduler thread")
         ::FeedProcessing.perform_async
-        sleep POLL_INTERVAL-20
+        sleep POLL_INTERVAL
       end
     rescue => ex
       return if ex.is_a?(Celluloid::Task::TerminatedError)

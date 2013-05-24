@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'pg'
 gem 'rack-cache'
 gem 'foreman'
-gem 'dalli', '~> 2.6'
+gem 'dalli'
 
 # Autthentication
 gem 'cancan', '~> 1.6.8'
-gem 'devise', '~> 1.5.3'
+gem 'devise', '~> 1.5'
 
 ### File Uploading
 gem 'aws-sdk'
@@ -18,7 +18,7 @@ gem 'less'
 gem 'less-rails'
 gem 'sass', '~> 3.2'
 gem 'sass-rails', '~> 3.2.5'
-gem 'jquery-rails', '~> 2.0.2'
+gem 'jquery-rails', '~> 2.0'
 
 gem 'multi_json'
 gem 'json'
@@ -27,35 +27,28 @@ gem 'json'
 # in production environments by default.
 group :assets do
   gem 'therubyrhino', require: 'rhino', platform: :jruby
-  gem 'therubyracer', require: 'v8',  platform: :mri_19
+  gem 'therubyracer', require: 'v8',  platform: :mri
   gem 'execjs'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.2.5'
 end
 
 # Data parsing
-gem 'feedzirra'
+gem 'loofah', '~> 1.2.1'
+gem 'feedzirra', git: 'git://github.com/pauldix/feedzirra.git'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-
 # Use unicorn as the web server
 group :production, :development do
-  gem 'unicorn', require: false, platform: :mri_19
-end
-
-group :test do
-  gem 'turn', require: false
+  gem 'unicorn', require: false, platform: :mri
 end
 
 gem 'meta_search'
 gem 'formtastic'
 gem 'activeadmin'
-
 gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-
 gem 'slim'
 gem 'sinatra'
 gem 'sidekiq'
-

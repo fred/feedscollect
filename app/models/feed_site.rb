@@ -25,6 +25,8 @@ class FeedSite < ActiveRecord::Base
     {:id => 3, :name => "rss"},
     {:id => 4, :name => "itunes_rss"}
   ]
+
+  MAX_FEEDS = 50
   
   def summary_total_size
     @bytes = 0
@@ -45,11 +47,9 @@ class FeedSite < ActiveRecord::Base
   # Clear older feed_entries leaving only the 100 newest
   def clean_older_feeds
     total = self.feed_entries.count
-    if (total>20)
-      total = (total-20)
-      FeedEntry.where(:feed_site_id => self.id).order("id ASC").limit(total).destroy_all
-      # sql = "delete from feed_entries where feed_site_id = #{self.id} order by published ASC limit #{total}"
-      # ActiveRecord::Base.connection.execute(sql)
+    if (total>MAX_FEEDS)
+      total = (total-MAX_FEEDS)
+      FeedEntry.where(feed_site_id: self.id).order("id ASC").limit(total).destroy_all
     end
   end
   

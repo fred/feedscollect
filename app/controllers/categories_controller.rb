@@ -8,10 +8,6 @@ class CategoriesController < ApplicationController
     else
       @categories = []
     end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @categories }
-    end
   end
 
   def show
@@ -42,17 +38,12 @@ class CategoriesController < ApplicationController
     else
       @title = @category.description
     end
-    render :action => "show"
+    render action: "show"
   end
 
   def new
     @category = Category.new
     @title = "New Category"
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @category }
-    end
   end
 
   def edit

@@ -5,6 +5,7 @@ development:
   username: fred
   password:
   host: 127.0.0.1
+  pool: 20
 
 production:
   adapter: postgresql
@@ -13,6 +14,7 @@ production:
   username: fred
   password:
   host: 127.0.0.1
+  pool: 20
 
 test:
   adapter: postgresql
@@ -21,4 +23,3 @@ test:
   username: fred
   password:
   host: 127.0.0.1
-

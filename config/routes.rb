@@ -1,9 +1,10 @@
 Technews::Application.routes.draw do
+  root :to => 'categories#home'
 
   require 'sidekiq/web'
   constraint = lambda { |request| request.env["warden"].authenticate? && request.env['warden'].user.is_admin? }
   constraints constraint do
-    mount Sidekiq::Web => '/queue'
+    mount Sidekiq::Web => '/sidekiq_queue'
   end
 
   ActiveAdmin.routes(self)
@@ -11,17 +12,12 @@ Technews::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users
-
-  root :to => 'categories#home'
   
   resources :feed_types
   
   resources :feed_sites do
     resources :feed_entries
     resources :category
-    collection do
-      get 'refresh_xluriwaplezx'
-    end
   end
   
   resources :feed_entries do
@@ -41,7 +37,6 @@ Technews::Application.routes.draw do
     resources :buildings
   end
   
-  # devise_for :users
   
   # resource :account, :controller => 'users'
   # resources :users
