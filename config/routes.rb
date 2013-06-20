@@ -2,8 +2,7 @@ Technews::Application.routes.draw do
   root :to => 'categories#home'
 
   require 'sidekiq/web'
-  constraint = lambda { |request| request.env["warden"].authenticate? && request.env['warden'].user.is_admin? }
-  constraints constraint do
+  constraints(lambda { |request| request.env["warden"].authenticate? && request.env['warden'].user.is_admin? }) do
     mount Sidekiq::Web => '/sidekiq_queue'
   end
 
