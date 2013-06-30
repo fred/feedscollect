@@ -15,20 +15,14 @@ gem 'devise', '~> 1.5'
 gem 'aws-sdk'
 gem 'paperclip', '~> 2.7.0'
 
-gem 'less'
-gem 'less-rails'
-gem 'sass', '~> 3.2'
-gem 'sass-rails', '~> 3.2.5'
-gem 'jquery-rails', '~> 2.0'
+gem 'sass'
+gem 'sass-rails'
+gem 'jquery-rails'
 
 gem 'multi_json'
 gem 'json'
 
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-  gem 'therubyrhino', require: 'rhino', platform: :jruby
-  gem 'therubyracer', require: 'v8',  platform: :mri
   gem 'execjs'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.2.5'
@@ -49,7 +43,7 @@ end
 gem 'meta_search'
 gem 'formtastic'
 gem 'activeadmin'
-gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'bootstrap-sass'
 gem 'slim'
 gem 'sinatra'
 gem 'sidekiq'
