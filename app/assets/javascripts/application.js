@@ -6,7 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require jquery.ui.core
+//= require tooltip
 //= require easyTooltip
 //= require browser_detect
 //= require modernizr
