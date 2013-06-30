@@ -18,6 +18,7 @@ gem 'paperclip', '~> 2.7.0'
 gem 'sass'
 gem 'sass-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'multi_json'
 gem 'json'
